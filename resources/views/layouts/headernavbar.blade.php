@@ -33,9 +33,7 @@
                                 <li class="nav-item">
                                     <a class="page-scroll" href="#contact">Contacte</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="clients">Area Client</a>
-                                </li>
+                                @include('layouts.user')
                             </ul>
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->

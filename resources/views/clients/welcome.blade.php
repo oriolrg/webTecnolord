@@ -3,48 +3,37 @@
     
     @include('layouts.head')
     <body>
-        <!--[if IE]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-      <![endif]-->
-       
-       
         @include('layouts.preloader');
         
-        @include('layouts.headernavbar');
-    
-        <section class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-">
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
+        @include('clients.layouts.headernavbar');
+        <div class="d-flex" id="wrapper">
+
+            @include('clients.layouts.leftMenu')
         
-        @include('layouts.footer');
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+        
+              <div class="container-fluid">
+                <h1 class="mt-4">Area Client</h1>
+                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+              </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        
+          </div>
+          <!-- /#wrapper -->
+          <!-- Menu Toggle Script -->
+          <script>
+            $("#menu-toggle").click(function(e) {
+              e.preventDefault();
+              $("#wrapper").toggleClass("toggled");
+            });
+          </script>
         
         <!--====== BACK TOP TOP PART START ======-->
     
         <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
-    
-        <!--====== BACK TOP TOP PART ENDS ======-->    
-    
-        <!--====== PART START ======-->
-    
-    <!--
-        <section class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-">
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-    -->
-    
-        <!--====== PART ENDS ======-->
 
         @include('layouts.llibreries');
     

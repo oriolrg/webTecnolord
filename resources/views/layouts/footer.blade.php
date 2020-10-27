@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer_about mt-50">
                         <div class="footer_logo">
-                            <a href="#"><img src="assets/images/logo-footer.svg" alt=""></a>
+                            <h2 class="hero_title wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s"><span>{{ config('app.name', 'Laravel') }}</span></h2>
                         </div>
                         <div class="footer_content">
                             <p>Lorem ipsum dolor sitco nsetetu nonumy eirmod tempor invidunt ut labore et dolore magna uyam erat, sed diam.</p>
@@ -36,12 +36,8 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="footer_subscribe mt-50">
-                        <h2 class="footer_title">Newsletter</h2>
+                        <h2 class="footer_title"></h2>
                         <div class="subscribe_form text-right">
-                            <form action="#">
-                                <input type="text" placeholder="Enter email">
-                                <button class="main-btn">Subscribe</button>
-                            </form>
                         </div>
                     </div> <!-- footer subscribe -->
                 </div>
@@ -50,14 +46,12 @@
         <div class="footer_copyright d-sm-flex justify-content-between">
             <div class="footer_social text-center">
                 <ul class="social">
-                    <li><a href="https://facebook.com/uideckHQ"><i class="lni lni-facebook-filled"></i></a></li>
-                    <li><a href="https://twitter.com/uideckHQ"><i class="lni lni-twitter-filled"></i></a></li>
-                    <li><a href="https://instagram.com/uideckHQ"><i class="lni lni-instagram-original"></i></a></li>
-                    <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                    <li><a href="https://twitter.com/tecno_lord"><i class="lni lni-twitter-filled"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/oriol-riu-gispert-1b158854/"><i class="lni lni-linkedin-original"></i></a></li>
                 </ul>
             </div> <!-- footer social -->
             <div class="footer_copyright_content  text-center">
-                <p>Designed and Developed by <a href="https://uideck.com" rel="nofollow">UIdeck</a></p>
+                <p>Copyright © <a href="https://tecnolord.cat" rel="nofollow">TecnoLord</a></p>
             </div> <!-- footer copyright content -->
         </div> <!-- footer copyright -->
     </div> <!-- container -->
