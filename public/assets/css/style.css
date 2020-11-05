@@ -146,6 +146,60 @@ p {
       border-color: #00eb00;
       color: #fff; }
 
+/*===== tags similars als botons =====*/
+.main-no-btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0 40px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 50px;
+  color: #fff;
+  z-index: 5;
+  -webkit-transition: all 0.4s ease-out 0s;
+  -moz-transition: all 0.4s ease-out 0s;
+  -ms-transition: all 0.4s ease-out 0s;
+  -o-transition: all 0.4s ease-out 0s;
+  transition: all 0.4s ease-out 0s;
+  background-color: #38424D;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 0; }
+
+  .main-multiple-no-btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0 20px;
+    margin: 0.3em;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 50px;
+    color: #fff;
+    z-index: 5;
+    -webkit-transition: all 0.4s ease-out 0s;
+    -moz-transition: all 0.4s ease-out 0s;
+    -ms-transition: all 0.4s ease-out 0s;
+    -o-transition: all 0.4s ease-out 0s;
+    transition: all 0.4s ease-out 0s;
+    background-color: #38424D;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 0; }
+
 /*===== All Slick Slide Outline Style =====*/
 .slick-slide {
   outline: 0; }

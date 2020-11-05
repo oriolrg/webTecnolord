@@ -17,7 +17,7 @@ class CreateProjectesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('user_id');
-            $table->string('tipologia_projecte_id');
+            $table->string('descripcio');
             $table->timestamps();
         });
     }

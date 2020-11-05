@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 /**
  * Rutes Vista administra
  */
@@ -80,6 +81,14 @@ Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
         Route::post('/actualitza', [App\Http\Controllers\AdministraBugsController::class, 'actualitzaBug'])->name('home');
         Route::post('/updateEstat', [App\Http\Controllers\AdministraBugsController::class, 'actualitzaEstatBug'])->name('home');
     });
+    //rutes Administra projectes publicats
+    Route::group(['prefix'=>'projectesPublicats','as'=>'bugs.'], function(){
+        Route::get('/', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'getProjectesDone'])->name('home');
+        Route::delete('/eliminar', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'eliminarProjecte'])->name('home');
+        Route::post('/nou', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'nouBug'])->name('home');
+        Route::post('/actualitza', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'actualitzaBug'])->name('home');
+        Route::post('/updateEstat', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'actualitzaEstatBug'])->name('home');
+    });
 });
 
 /**
@@ -112,3 +121,7 @@ Route::group(['prefix'=>'client','as'=>'admin.'], function(){
         Route::post('/updateEstat', [App\Http\Controllers\AdministraBugsController::class, 'actualitzaEstatBug'])->name('home');
     });
 });
+/**
+ * Rutes consultes api publiques
+ */
+Route::get('/categories', [App\Http\Controllers\CategoriesController::class, 'getCategories'])->name('home');

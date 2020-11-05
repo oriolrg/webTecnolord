@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Projecte;
+use App\Models\Categoria;
+use App\Models\ProjecteCategoria;
 use Carbon\Carbon;
 use Auth;
 
@@ -64,11 +66,15 @@ class AdministraProjectesController extends Controller
      */
     public function nouProjecte(Request $request)
     {
-        Projecte::create([
+        $projecte = Projecte::create([
             'name' => $request->name,
             'descripcio' => $request->descripcio,
             'user_id' => $request->user_id,
         ]);
+        foreach ($request->tags as $key => $value) {
+            //creo o actualitzo noves categories
+            $this->novaCategoria($value, $projecte->id);
+        }
         return $this->getProjectes();
     }
     /**
@@ -82,7 +88,41 @@ class AdministraProjectesController extends Controller
         $projecte->name = $request->name;
         $projecte->descripcio = $request->descripcio;
         $projecte->save();
+
+        foreach ($request->tags as $key => $value) {
+            //creo o actualitzo noves categories
+            $this->novaCategoria($value, $projecte->id);
+        }
         return $this->getProjectes();
+    }
+    /**
+     * crea i actualitza categories
+     *
+     * @param $value nom categoria, $projecte_id
+     * @return void
+     */
+    public function novaCategoria($value, $projecte_id)
+    {
+        //TODO controlar que no es dupliquin les categories
+        $categoriaId = Categoria::where('name',$value)->first();
+        //Si encara no existeix la categoria
+        if (!$categoriaId) {
+            $categoria = Categoria::create([
+                'name' => $value,
+            ]);
+            ProjecteCategoria::create([
+                'categoria_id' => $categoria->id,
+                'projecte_id' => $projecte_id,
+            ]);
+        //Si ja existeix la categoria
+        }else{
+            if(!ProjecteCategoria::where('categoria_id', $categoriaId->id)->where('projecte_id', $projecte_id)->first()){
+                ProjecteCategoria::create([
+                    'categoria_id' => $categoriaId->id,
+                    'projecte_id' => $projecte_id,
+                ]);
+            }
+        }
     }
     /**
      * Marca Projecte com a finalitzat
@@ -109,6 +149,7 @@ class AdministraProjectesController extends Controller
     public function eliminarProjecte(Request $request)
     {
         $projecte = Projecte::where('id', $request->id)->delete();
+        ProjecteCategoria::where('projecte_id', $request->id)->delete();
         return $this->getProjectes();
     }
 }

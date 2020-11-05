@@ -34,6 +34,11 @@
                                     <a class="page-scroll" href="#contact">Contacte</a>
                                 </li>
                                 @include('layouts.user')
+                                <li class="nav-item">
+                                    <a class="page-scroll" href="#portafoli">CA</a> |
+                                    <a class="page-scroll" href="#curriculum">EN</a> |
+                                    <a class="page-scroll" href="#contact">ES</a>
+                                </li>
                             </ul>
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->

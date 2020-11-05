@@ -24,4 +24,7 @@ class Projecte extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+    public function categories() {
+        return $this->belongsToMany('App\Categoria', 'ProjecteCategoria', 'categoria_id', 'projecte_id');
+    }
 }

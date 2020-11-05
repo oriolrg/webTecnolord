@@ -18,6 +18,11 @@
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
             </td>
+            <td>
+                <div class="form-group">
+                    <autocomplete-categoria-component @tags="nouTag"></autocomplete-categoria-component>
+                </div>
+            </td>
             <td><br>
                 <button  v-if="fields.id" v-on:click="actualitza" class="btn btn-primary">Actualitza</button>
                 <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Cancela</button>
@@ -43,6 +48,7 @@
                 data_results: [],
                 selected: '',
                 dataClient: [],
+                tags: [],
                 fields: {},
                 errors: {},
                 url:adminProjectesUrl,
@@ -51,6 +57,7 @@
         methods: {
             nou: function (event) {
                 let url = this.url+'/nou';
+                this.fields.tags = this.tags;
                 axios.post(url, this.fields).then(response => {
                     alert('Projecte Creat!');
                     this.data_results = response.data;
@@ -69,6 +76,7 @@
             },
             actualitza: function (event) {
                 let url = this.url+'/actualitza';
+                this.fields.tags = this.tags;
                 axios.post(url, this.fields).then(response => {
                     alert('Projecte Actualitzat!');
                     this.data_results = response.data;
@@ -90,6 +98,9 @@
             },
             onSelectUser (value) {
                 this.fields.user_id =value;
+            },
+            nouTag (value) {
+                this.tags = value;
             }
         },
         mounted() {

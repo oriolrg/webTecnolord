@@ -8,9 +8,9 @@
                 <div class="col-lg-6">
                     <div class="header_hero_content">
                         <h2 class="hero_title wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">Benvinguts a <span>TecnoLord</span>, serveis d'enginyeria Informàtica </h2>
-                        <p class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">¡Hola! Sóc l'Oriol Riu Gispert, aquí podràs coneixer els serveis que ofereix TecnoLord.</p>
+                        <!--<p class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">¡Hola! Sóc l'Oriol Riu Gispert, aquí podràs coneixer els serveis que ofereix TecnoLord.</p>-->
                         <ul>
-                            <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow" href="">Portafoli</a></li>
+                            <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow"  href="#curriculum">Curriculum Oriol Riu Gispert</a></li>
                         </ul>
                     </div> <!-- header hero content -->
                 </div>
@@ -20,7 +20,7 @@
 
         <div class="header_image d-flex align-items-center">
             <div class="image">
-                <img class="wow fadeInRightBig" data-wow-duration="2s" data-wow-delay="1.6s" src="assets/images/header-image.png" alt="Header Image">
+                <img class="wow fadeInRightBig" data-wow-duration="2s" data-wow-delay="1.6s" src="assets/images/header-image.png" alt="TecnoLord Enginyeria Informàtica">
             </div>
         </div> <!-- header image -->
     </div> <!-- header hero -->

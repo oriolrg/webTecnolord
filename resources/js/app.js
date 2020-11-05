@@ -28,6 +28,7 @@ Vue.component('administra-clients-component', require('./components/administrado
 Vue.component('nou-client-component', require('./components/administrador/usuaris/NouClientComponent.vue').default);
 /* Components administra Projectes */
 Vue.component('administra-projectes-component', require('./components/administrador/projectes/AdministraProjectesComponent.vue').default);
+Vue.component('autocomplete-categoria-component', require('./components/administrador/projectes/AutocompleteCategoriaComponent.vue').default);
 Vue.component('nou-projecte-component', require('./components/administrador/projectes/NouProjecteComponent.vue').default);
 Vue.component('select-clients-component', require('./components/administrador/projectes/SelectClientsComponent.vue').default);
 /* Components administra Histories */
@@ -37,6 +38,8 @@ Vue.component('select-projecte-component', require('./components/administrador/h
 /* Components administra Bugs */
 Vue.component('administra-bugs-component', require('./components/administrador/bugs/AdministraBugsComponent.vue').default);
 Vue.component('nou-bug-component', require('./components/administrador/bugs/NouBugComponent.vue').default);
+/* Components administra Projectes */
+Vue.component('administra-projectes-publicats-component', require('./components/administrador/projectesPublicats/AdministraProjectesPublicatsComponent.vue').default);
 
 /**
  * 

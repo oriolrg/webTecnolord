@@ -18,9 +18,9 @@
     
         @include('public.serveis')
     
-        @include('public.curriculum')
-    
         @include('public.portafoli')
+    
+        @include('public.curriculum.curriculum')
     
         @include('public.contacte')
     

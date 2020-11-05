@@ -82,6 +82,23 @@
                 });
 
             },
+            //accions al canviar d'estat ToDO Doing Done
+            changeEstat(id, estat){
+                this.visioResultats = true;
+                window.axios = require('axios');
+
+                window.axios.defaults.headers.common = {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                };
+                this.data_results = [];
+                let url = this.url+'/updateEstat';
+                //let url = "/autocomplete/categories";
+                axios.post(url,{id: id, estat: estat, projecte_id:this.projecte_id}).then(response => {
+                    this.data_results = response.data;
+                });
+
+            },
             click(){
                 //emeto l'opció selecionada
                 this.$emit('clicked', this.selected);
