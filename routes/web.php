@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/idioma/{lang}', [App\Http\Controllers\LanguageController::class, 'setLocale'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('public.welcome');
-});
 
 Auth::routes(["register" => false]);
 
+Route::get('/meteo',[App\Http\Controllers\MeteoController::class, 'index'])->name('home');
+Route::get('/meteo/save',[App\Http\Controllers\MeteoController::class, 'saveMeteo'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**
@@ -84,10 +85,9 @@ Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
     //rutes Administra projectes publicats
     Route::group(['prefix'=>'projectesPublicats','as'=>'bugs.'], function(){
         Route::get('/', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'getProjectesDone'])->name('home');
-        Route::delete('/eliminar', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'eliminarProjecte'])->name('home');
-        Route::post('/nou', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'nouBug'])->name('home');
-        Route::post('/actualitza', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'actualitzaBug'])->name('home');
-        Route::post('/updateEstat', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'actualitzaEstatBug'])->name('home');
+        Route::get('/nou', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'nouProjectePublicar'])->name('home');
+        Route::post('/publicar', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'publicarProjecte'])->name('home');
+        Route::get('/finalitzar', [App\Http\Controllers\AdministraProjectesPublicatsController::class, 'amagarProjecte'])->name('home');
     });
 });
 

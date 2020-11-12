@@ -1,6 +1,6 @@
                                 @guest
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Area Client') }}</a>
+                                        <a class="nav-link" href="{{ route('login') }}">@lang('headernavbar.Area Client')</a>
                                     </li>
                                     @if (Route::has('register'))
                                         <li class="nav-item">
@@ -17,14 +17,14 @@
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
+                                                @lang('headernavbar.Logout')
                                             </a>
                                             <a class="dropdown-item" href="{{url('/clients')}}">
-                                                {{ __('Area Client') }}
+                                                @lang('headernavbar.Area Client')
                                             </a>
                                             @if( Auth::user()->admin == 1)
                                                 <a class="dropdown-item" href="{{url('/administra')}}">
-                                                    {{ __('Area Administrador') }}
+                                                    @lang('headernavbar.Area Administrador')
                                                 </a>
                                             @endif
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -1492,3 +1492,10 @@ p.form-message.success, p.form-message.error {
   .back-to-top:hover {
     color: #fff;
     background-color: #00eb00; }
+.logo{
+  position: absolute;
+  float: left;
+  width: 250px;
+  left: -4em;
+  margin-top: -70px;
+}

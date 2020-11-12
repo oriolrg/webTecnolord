@@ -21,7 +21,7 @@
                     </div>
                     <div class="services_content">
                         <h3 class="services_title">@lang('serveis.Disseny Web.')</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadi aliquyam erat, sed diam voluptua. At vero eos accusam et justo duo dolores </p>
+                        <p>@lang('serveis.Disseny Web definicio.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Projecte;
 use App\Models\Categoria;
 use App\Models\ProjecteCategoria;
+use App\Models\ProjectePublic;
 use Carbon\Carbon;
 use Auth;
 
@@ -135,6 +136,17 @@ class AdministraProjectesController extends Controller
         if($projecte->finished_at==null){
             $projecte->finished_at = Carbon::now();
             $projecte->save();
+            $projecte = ProjectePublic::create([
+                'name' => $projecte->name,
+                'descripcio' => $projecte->descripcio,
+                'client' => $projecte->user_id,
+                'img_portada' => null,
+                'img_interna_1' => null,
+                'img_interna_2' => null,
+                'img_interna_3' => null,
+                'data_finalitzacio' => null,
+                'publicat' => 0,
+            ]);
         }else{
             $projecte->finished_at = null;
             $projecte->save();

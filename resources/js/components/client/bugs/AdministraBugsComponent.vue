@@ -16,9 +16,6 @@
                 <template v-slot:footer>
                     <em>{{ new Date(result.created_at).getDate()}}-{{new Date(result.created_at).getMonth() + 1 }}-{{new Date(result.created_at).getFullYear()}}</em>
                     <br>
-                    <button class="btn btn-warning" v-if="result.estat != 0" @click="changeEstat(result.id, 0)">ToDo</button>
-                    <button class="btn btn-primary" v-if="result.estat != 1" @click="changeEstat(result.id, 1)">Doing</button>
-                    <button class="btn btn-success" v-if="result.estat != 2" @click="changeEstat(result.id, 2)">Done</button>
                     <br>
                     <button class="btn btn-secondary" @click="updateBug(result)"><i class="fa fa-edit"></i></button>
                     <button class="btn btn-danger" @click="borrarBug(result.id)"><i class="fa fa-trash"></i></button>

@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section_title text-center pb-25">
-                    <h5 class="sub_title">Estratègia</h5>
-                    <h4 class="main_title">Estratègia de treball</h4>
+                    <h5 class="sub_title">@lang('estrategia.Estratègia')</h5>
+                    <h4 class="main_title">@lang('estrategia.Estratègia de treball')</h4>
                 </div> <!-- section title -->
             </div>
         </div> <!-- row -->
         <div class="row justify-content-center">
             <div class="col-lg-4 col-sm-7">
-                <div class="single_services text-center mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+                <div class="single_services text-center active mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                     <div class="services_icon">
                         <i class="lni lni-write"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="94" height="92" viewBox="0 0 94 92">
@@ -20,13 +20,13 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title"><a href="#">Recerca</a></h3>
-                        <p>@lang('recerca.TecnoLord esta en continu aprenentatge. Projecte rere projecte, es realitza una recerca de quina serà la millor tecnología que s\'adapta a ell i al client.')</p>
+                        <h3 class="services_title"><a href="">@lang('estrategia.Recerca')</a></h3>
+                        <p>@lang('estrategia.TecnoLord esta en continu aprenentatge. Projecte rere projecte, es realitza una recerca de quina serà la millor tecnología que s\'adapta a ell i al client.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
             <div class="col-lg-4 col-sm-7">
-                <div class="single_services text-center mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="single_services text-center active mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
                     <div class="services_icon">
                         <i class="lni lni-display-alt"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="94" height="92" viewBox="0 0 94 92">
@@ -34,13 +34,13 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title"><a href="#">Prototipat</a></h3>
-                        <p>@lang('recerca.Si el projecte ho requereix, es realitza un primer prototipat visual, per tenir una primera idea de com serà.')</p>
+                        <h3 class="services_title"><a href="">@lang('estrategia.Prototipat')</a></h3>
+                        <p>@lang('estrategia.Si el projecte ho requereix, es realitza un primer prototipat visual, per tenir una primera idea de com serà.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
             <div class="col-lg-4 col-sm-7">
-                <div class="single_services text-center mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="single_services text-center active mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
                     <div class="services_icon">
                         <i class="lni lni-direction-alt"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="94" height="92" viewBox="0 0 94 92">
@@ -48,13 +48,13 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title"><a href="#">Interacció amb el client</a></h3>
-                        <p>@lang('recerca.TecnoLord demana una col·laboració estreta del client al llarg del projecte, per tal d\'obtenir un producte final ajustat als seus requeriments..')</p>
+                        <h3 class="services_title"><a href="">@lang('estrategia.Interacció amb el client')</a></h3>
+                        <p>@lang('estrategia.TecnoLord demana una col·laboració estreta del client al llarg del projecte, per tal d\'obtenir un producte final ajustat als seus requeriments..')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
             <div class="col-lg-4 col-sm-7">
-                <div class="single_services text-center mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
+                <div class="single_services text-center active mt-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
                     <div class="services_icon">
                         <i class="lni lni-bricks"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" width="94" height="92" viewBox="0 0 94 92">
@@ -62,8 +62,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title"><a href="#">Desenvolupament</a></h3>
-                        <p>@lang('recerca.Es realitza un desenvolupament per parts del projecte final, millorant així el rendiment del producte, com també millorant-ne el resultat final.')</p>
+                        <h3 class="services_title"><a href="">@lang('estrategia.Desenvolupament')</a></h3>
+                        <p>@lang('estrategia.Es realitza un desenvolupament per parts del projecte final, millorant així el rendiment del producte, com també millorant-ne el resultat final.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>

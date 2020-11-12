@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <h1 class="mt-4">Area Administra Projectes</h1>
+        <h1 class="mt-4">Els teus Projectes</h1>
         <div class="table-responsive">
             <nou-projecte-component v-if="data_projecte"  :data_projecte="data_projecte"></nou-projecte-component>
             <table class="table no-wrap user-table mb-0">

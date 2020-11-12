@@ -7,9 +7,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Màster em Engeniería de les Telecos</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">des de 2019</span>
+            <h1>@lang('curriculum.Màster em Engeniería de les Telecos')</h1>
+            <p>@lang('curriculum.definicio telecos')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.des de') 2019</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
@@ -23,9 +23,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Grau en enginyeria Informatica</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">Finalitzat el 2016</span>
+            <h1>@lang('curriculum.Grau en enginyeria Informatica')</h1>
+            <p>@lang('curriculum.definicio grau')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.Finalitzat el') 2016</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
@@ -39,9 +39,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>CFGS en Desenvolupament d'aplicacions informàtiques</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">Finalitzat el 2006</span>
+            <h1>@lang('curriculum.CFGS en Desenvolupament d\'aplicacions informàtiques')</h1>
+            <p>@lang('curriculum.definicio cfgs')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.Finalitzat el') 2006</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
@@ -54,9 +54,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Màster de professorat especialitat en tecnología</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">Finalitzat el 2018</span>
+            <h1>@lang('curriculum.Màster de professorat especialitat en tecnología')</h1>
+            <p>@lang('curriculum.definicio master')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.Finalitzat el') 2018</span>
         </div>
     </div>  <!-- single pricing -->
 </div>

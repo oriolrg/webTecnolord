@@ -15,5 +15,11 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'E-Mail Address' => 'E-Mail',
+    'Password' => 'Contrassenya',
+    'Remember Me' => 'Recorda\'m',
+    'Login' => 'Entra',
+    'Forgot Your Password?' => 'No recordes la contrassenya?',
+    '' => '',
 
 ];

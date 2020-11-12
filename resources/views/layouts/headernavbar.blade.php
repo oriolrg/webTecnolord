@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html">
-                            <h2 class="hero_title wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">{{ config('app.name', 'Laravel') }}</h2>
+                        <a class="navbar-brand" href="/">
+                            <img class="logo" data-wow-duration="2s" data-wow-delay="0.4s" src="assets/images/tecnolord.png" alt="Contacte">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="toggler-icon"></span>
@@ -15,29 +15,29 @@
 
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="page-scroll" href="#inici">Inici</a>
+                                <li class="nav-item">
+                                    <a class="page-scroll" href="#estrategia">@lang('headernavbar.Estrategia')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#estrategia">Estrategia</a>
+                                    <a class="page-scroll" href="#services">@lang('headernavbar.Serveis')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#services">Serveis</a>
+                                    <a class="page-scroll" href="#portafoli">@lang('headernavbar.Portafoli')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#portafoli">Portafoli</a>
+                                    <a class="page-scroll" href="#meteo">@lang('Meteo')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#curriculum">Curriculum</a>
+                                    <a class="page-scroll" href="#curriculum">@lang('headernavbar.Curriculum')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#contact">Contacte</a>
+                                    <a class="page-scroll" href="#contact">@lang('headernavbar.Contacte')</a>
                                 </li>
-                                @include('layouts.user')
+                                <!--@include('layouts.user')-->
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#portafoli">CA</a> |
-                                    <a class="page-scroll" href="#curriculum">EN</a> |
-                                    <a class="page-scroll" href="#contact">ES</a>
+                                    <a class="page-scroll" href="{{ asset('idioma/ca') }}">CA</a> |
+                                    <a class="page-scroll" href="{{ asset('idioma/en') }}">EN</a> |
+                                    <a class="page-scroll" href="{{ asset('idioma/es') }}">ES</a>
                                 </li>
                             </ul>
                         </div> <!-- navbar collapse -->

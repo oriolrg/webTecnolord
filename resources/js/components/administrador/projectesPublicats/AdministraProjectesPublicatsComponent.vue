@@ -7,23 +7,17 @@
                 <tr>
                     <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
                     <th scope="col" class="border-0 text-uppercase font-medium">Nom Projecte</th>
-                    <!--<th scope="col" class="border-0 text-uppercase font-medium">Occupation</th>-->
-                    <th scope="col" class="border-0 text-uppercase font-medium">Client</th>
                     <th scope="col" class="border-0 text-uppercase font-medium">Tipología projecte</th>
                     <th scope="col" class="border-0 text-uppercase font-medium">Data inici</th>
                     <th scope="col" class="border-0 text-uppercase font-medium">Data Fí</th>
-                    <!--<th scope="col" class="border-0 text-uppercase font-medium">Category</th>-->
                     <th scope="col" class="border-0 text-uppercase font-medium">Accions</th>
                 </tr>
                 </thead>
                 <tbody v-for="(result ,index) in data_results" v-bind:key="index" v-bind:value="result.id" @click="click" >
-                    <tr v-bind:class="{ 'table-success': result.finished_at, 'table-warning': result.finished_at == NULL}">
+                    <tr v-bind:class="{ 'table-success': result.publicat == 1, 'table-warning': result.publicat == 0}">
                     <td class="pl-4"></td>
                     <td>
                         <h5 class="font-medium mb-0">{{result.name}}</h5>
-                    </td>
-                    <td>
-                        <span class="text-muted">{{result.user_id}}</span><br>
                     </td>
                     <td>
                         <span class="text-muted">{{result.descripcio}} </span><br>
@@ -35,17 +29,50 @@
                         </span>
                     </td>
                     <td>
-                        <span v-if="result.finished_at" class="text-muted">{{new Date(result.finished_at).getDate()}}-{{new Date(result.finished_at).getMonth() + 1 }}-{{new Date(result.finished_at).getFullYear()}} </span>
-                        <span v-else class="text-muted">Doing </span><br>
+                        <span v-if="result.publicat == 1" class="text-muted">Publicat </span>
+                        <span v-else class="text-muted">Per publicar </span><br>
                     </td>
                     <td>
                         <button @click="onPublicar(result.id)" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-html5"></i> </button>
+                        <button @click="onFinalitzar(result.id)" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-window-close-o "></i> </button>
                         <button @click="onEditar(result)" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                        <button @click="onFinalitzar(result.id)" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-calendar-check-o "></i> </button>
                     </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div v-if="this.show_form==true" class="" id="create">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>{{data_editar.name}}</h4>
+                        <button @click="onTancar()" type="button" class="close" data-dismiss="modal">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Nom Projecte:</label>
+                            <textarea type="text" class="form-control" name="name" id="name" v-model="data_editar.name" />
+                            <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Descripcio:</label>
+                            <textarea type="text" class="form-control" name="descripcio" id="descripcio" v-model="data_editar.descripcio" />
+                            <div v-if="errors && errors.descripcio" class="text-danger">{{ errors.descripcio[0] }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Tipologia Projecte:</label>
+                            <textarea type="text" class="form-control" name="tipologia" id="tipologia" v-model="data_editar.tipologia" />
+                            <div v-if="errors && errors.tipologia" class="text-danger">{{ errors.tipologia[0] }}</div>
+                        </div>
+                        <input type="file" @change="selectFile">
+                    </div>
+                    <div class="modal-footer">
+                        <button @click="onGuardarProjecteEditat(data_editar)" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"> Guardar</i> </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -55,6 +82,7 @@
     export default {
         data () {
             return {
+                photo: null,
                 searchquery: '',
                 data_results: [],
                 selected: '',
@@ -62,7 +90,9 @@
                 fields: {},
                 errors: {},
                 data_projecte:'',
+                show_form:'',
                 url: adminProjectesPublicatsUrl,
+                data_editar: [],
             }
         },
         methods: {
@@ -83,7 +113,7 @@
                     this.data_results = response.data;
                 });
             },
-            onBorrar: function(id){
+            onPublicar: function(id){
                 this.visioResultats = true;
                 window.axios = require('axios');
 
@@ -91,15 +121,11 @@
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 };
+                let url = this.url+'/nou/';
                 this.data_results = [];
-                let url = this.url+'/eliminar/';
-                //let url = "/autocomplete/categories";
-                axios.delete(url,{params: {id: id}}).then(response => {
+                axios.get(url,{params: {id: id}}).then(response => {
                     this.data_results = response.data;
                 });
-            },
-            onPublicar: function(data_projecte){
-                this.data_projecte = data_projecte;
             },
             onFinalitzar: function(id){
                 window.axios = require('axios');
@@ -111,15 +137,25 @@
                 this.data_results = [];
                 let url = this.url+'/finalitzar/';
                 //let url = "/autocomplete/categories";
-                axios.post(url,{params: {id: id}}).then(response => {
+                axios.get(url,{params: {id: id}}).then(response => {
                     this.data_results = response.data;
                 });
             },
-            //actualitza els projectes al canviar el valor del component nou projecte al fer actualitzar
-            nous_usuaris(e){
-                this.obtenirClients();
+            onEditar: function(result){
+                this.data_editar = [];
+                this.data_editar = result;
+                this.show_form = true;
             },
+            onGuardarProjecteEditat: function(){
 
+            },
+            onTancar: function(){
+                this.show_form = false;
+            },
+            selectFile(event) {
+                // `files` is always an array because the file input may be in multiple mode
+                this.photo = event.target.files[0];
+            },
             click(){
                 //emeto l'opció selecionada
                 this.$emit('clicked', this.selected);

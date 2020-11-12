@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Projecte;
+use App\Models\ProjectePublic;
 use Carbon\Carbon;
 use Auth;
 
@@ -36,7 +36,7 @@ class AdministraProjectesPublicatsController extends Controller
      */
     public function getProjectes()
     {
-        $projectes = Projecte::orderBy('finished_at', 'asc')->orderBy('created_at', 'desc')->get();
+        $projectes = ProjectePublic::get();
         foreach ($projectes as $key => $value) {
             $value->user_id  = $value->usuari->name;
         }
@@ -44,18 +44,16 @@ class AdministraProjectesPublicatsController extends Controller
         return $projectes;
     }
     /**
-     * Obté tots els projectes
+     * Preparar nou projecte per publicar a web publica
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getProjectesDoing()
+    public function nouProjectePublicar(Request $request)
     {
-        $projectes = Projecte::where('finished_at','=', null)->orderBy('created_at', 'desc')->get();
-        foreach ($projectes as $key => $value) {
-            $value->user_id  = $value->usuari->name;
-        }
-
-        return $projectes;
+        $projectes = ProjectePublic::where('id', $request->id)->first();
+        $projectes->publicat = 1;
+        $projectes->save();
+        return $this->getProjectesDone();
     }
     /**
      * Obté tots els projectes finalitzats
@@ -64,10 +62,7 @@ class AdministraProjectesPublicatsController extends Controller
      */
     public function getProjectesDone()
     {
-        $projectes = Projecte::where('finished_at','!=', null)->orderBy('created_at', 'desc')->get();
-        foreach ($projectes as $key => $value) {
-            $value->user_id  = $value->usuari->name;
-        }
+        $projectes = ProjectePublic::orderBy('created_at', 'desc')->get();
 
         return $projectes;
     }
@@ -76,14 +71,12 @@ class AdministraProjectesPublicatsController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function nouProjecte(Request $request)
+    public function amagarProjecte(Request $request)
     {
-        Projecte::create([
-            'name' => $request->name,
-            'descripcio' => $request->descripcio,
-            'user_id' => $request->user_id,
-        ]);
-        return $this->getProjectes();
+        $projectes = ProjectePublic::where('id', $request->id)->first();
+        $projectes->publicat = 0;
+        $projectes->save();
+        return $this->getProjectesDone();
     }
     /**
      * Actualitza Projecte

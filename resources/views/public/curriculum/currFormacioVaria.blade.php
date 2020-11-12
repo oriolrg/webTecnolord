@@ -7,8 +7,8 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Curs de formació Bàsica per a bombers</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
+            <h1>@lang('curriculum.Curs de formació Bàsica per a bombers')</h1>
+            <p>@lang('curriculum.definicio bombers')</p>
             <span  href="" class="main-no-btn">Finalitzat el 2009</span>
         </div>
     </div>  <!-- single pricing -->
@@ -23,9 +23,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Bomber d'empresa nivell avançat</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">Finalitzat el 2012</span>
+            <h1>@lang('curriculum.Bomber d\'empresa nivell avançat')</h1>
+            <p>@lang('curriculum.definicio bombers empresa')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.Finalitzat el') 2012</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
@@ -39,9 +39,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Tècnic operador en gestió d'emergències</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">Finalitzat el 2009</span>
+            <h1>@lang('curriculum.Tècnic operador en gestió d\'emergències')</h1>
+            <p>@lang('curriculum.definicio operador')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.Finalitzat el') 2009</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
@@ -54,9 +54,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Certificat de suport vital bàsic i DEA</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span  href="" class="main-no-btn">Finalitzat el 2018</span>
+            <h1>@lang('curriculum.Certificat de suport vital bàsic i DEA')</h1>
+            <p>@lang('curriculum.definicio DEA')</p>
+            <span  href="" class="main-no-btn">@lang('curriculum.Finalitzat el') 2018</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
@@ -69,9 +69,9 @@
             </svg>
         </div>
         <div class="pricing_content">
-            <h1>Curs d'habilitats comunicatives</h1>
-            <p>Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-            <span class="main-no-btn">Finalitzat el 2019</span>
+            <h1>@lang('curriculum.Curs d\'habilitats comunicatives')</h1>
+            <p>@lang('curriculum.definicio habilitats comunicatives')</p>
+            <span class="main-no-btn">@lang('curriculum.Finalitzat el') 2019</span>
         </div>
     </div>  <!-- single pricing -->
 </div>

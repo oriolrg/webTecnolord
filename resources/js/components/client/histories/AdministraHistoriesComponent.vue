@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <h1 class="mt-4">Area Administra Histories Usuari</h1>
+        <h1 class="mt-4">Gestiona Histories d'Usuari</h1>
         <div class="table-responsive">
             <client-select-projectes-component @clicked="onSelectProjecte"></client-select-projectes-component>
         </div>
