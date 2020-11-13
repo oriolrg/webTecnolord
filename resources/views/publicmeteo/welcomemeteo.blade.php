@@ -12,8 +12,6 @@
         @include('layouts.preloader');
         
         @include('publicmeteo.layouts.headernavbar');
-
-        @include('layouts.header');
     
         @include('public.meteo.meteo')
     
@@ -46,7 +44,10 @@
         <!--====== PART ENDS ======-->
 
         @include('layouts.llibreries');
-    
+        <canvas id="canvas" width="450" height="402" style="border:3px solid #ccc;">
+            Tu navegador no soporta canvas
+            </canvas>
+        <script src="{{ asset('assets/js/webcam.js') }}"></script>
     </body>
     
     </html>

@@ -16,29 +16,33 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#estrategia">@lang('headernavbar.Estrategia')</a>
+                                    <a class="" href="#inici">@lang('headernavbar.Inici')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#services">@lang('headernavbar.Serveis')</a>
+                                    <a class="" href="#estrategia">@lang('headernavbar.Estrategia')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#portafoli">@lang('headernavbar.Portafoli')</a>
+                                    <a class="" href="#services">@lang('headernavbar.Serveis')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#meteo">@lang('Meteo')</a>
+                                    <a class="" href="#portafoli">@lang('headernavbar.Portafoli')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#curriculum">@lang('headernavbar.Curriculum')</a>
+                                    <a class="" href="#meteo">@lang('Meteo')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="#contact">@lang('headernavbar.Contacte')</a>
+                                    <a class="" href="#curriculum">@lang('headernavbar.Curriculum')</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" href="#contact">@lang('headernavbar.Contacte')</a>
                                 </li>
                                 <!--@include('layouts.user')-->
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="{{ asset('idioma/ca') }}">CA</a> |
-                                    <a class="page-scroll" href="{{ asset('idioma/en') }}">EN</a> |
-                                    <a class="page-scroll" href="{{ asset('idioma/es') }}">ES</a>
+                                    <a class="" href="{{ asset('idioma/ca') }}">CA</a> |
+                                    <a class="" href="{{ asset('idioma/en') }}">EN</a> |
+                                    <a class="" href="{{ asset('idioma/es') }}">ES</a>
                                 </li>
+                                
                             </ul>
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->

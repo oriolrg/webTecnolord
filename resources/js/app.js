@@ -37,7 +37,7 @@ Vue.component('nou-historia-component', require('./components/administrador/hist
 Vue.component('select-projecte-component', require('./components/administrador/histories/SelectProjecteComponent.vue').default);
 /* Components administra Bugs */
 Vue.component('administra-bugs-component', require('./components/administrador/bugs/AdministraBugsComponent.vue').default);
-Vue.component('nou-bug-component', require('./components/administrador/bugs/NouBugComponent.vue').default);
+Vue.component('nou-bug-component', require('./components/client/bugs/NouBugComponent.vue').default);
 /* Components administra Projectes */
 Vue.component('administra-projectes-publicats-component', require('./components/administrador/projectesPublicats/AdministraProjectesPublicatsComponent.vue').default);
 

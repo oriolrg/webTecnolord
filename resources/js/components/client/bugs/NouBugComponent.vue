@@ -3,7 +3,7 @@
         <table class="table no-wrap user-table mb-0">
             <td>
                 <div class="form-group">
-                    <label for="name">Titol Historia:</label>
+                    <label for="name">Titol Problema:</label>
                     <textarea type="text" class="form-control" name="name" id="name" v-model="fields.name" />
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
@@ -17,15 +17,15 @@
             </td>
             <td>
                 <div class="form-group">
-                    <label for="name">Perque passa:</label>
+                    <label for="name">Que hauria de passar:</label>
                     <textarea type="text" class="form-control" name="perque" id="perque" v-model="fields.perque" />
                     <div v-if="errors && errors.perque" class="text-danger">{{ errors.perque[0] }}</div>
                 </div>
             </td>
             <td><br>
                 <button  v-if="fields.id" v-on:click="actualitza" class="btn btn-primary">Actualitza</button>
-                <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Cancela</button>
-                <button  v-else v-on:click="nou" class="btn btn-primary">Crear Bug</button>
+                <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Canscela</button>
+                <button  v-else v-on:click="nou" class="btn btn-primary">Guardar Incidència</button>
             </td>
         </table>
     </div>

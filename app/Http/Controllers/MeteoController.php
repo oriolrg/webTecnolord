@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Models\Meteo;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use Storage;
 
 class MeteoController extends Controller
 {
@@ -28,6 +30,14 @@ class MeteoController extends Controller
     {
         $current = Http::get('https://api.weather.com/v2/pws/observations/current?stationId=ISANTL9&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal');
         $value = $current->json('observations');
+        $url = 'http://109.167.55.247:8001/record/current.jpg';
+        $c = curl_init();
+        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($c, CURLOPT_URL, $url);
+        $contents = curl_exec($c);
+        curl_close($c);
+        $name = substr($url, strrpos($url, '/') + 1);
+        Storage::put($name, $contents);
         return view('publicmeteo.welcomemeteo')
         ->with('dirVent', $value[0]['winddir'])
         ->with('velVent', $value[0]['metric']['windSpeed'])
@@ -41,7 +51,8 @@ class MeteoController extends Controller
         ->with('radSolar', $value[0]['solarRadiation'])
         ->with('uv', $value[0]['uv'])
         ->with('pressio', $value[0]['metric']['pressure'])
-        ->with('dataActual', $value[0]['obsTimeLocal']);
+        ->with('dataActual', $value[0]['obsTimeLocal'])
+        ->with('dadesDiaries',  $this->getDiariData());
     }
     /**
      * Guarda les dades meteo
@@ -106,5 +117,25 @@ class MeteoController extends Controller
         $value = end($data);
         
         return $value;
+    }
+    /**
+     * Obtenir dades diaries
+     *
+     * @return void
+     */
+    public static function getDiariData()
+    {
+        $dadesDiaries = collect();
+        $dadesDiaries['Tmitjana'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->avg('temperatura');
+        $dadesDiaries['TMax'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('temperatura','desc')->first()->temperatura;
+        $dadesDiaries['TMin'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('temperatura','asc')->first()->temperatura;
+        $dadesDiaries['PTotal'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('precipTotal','desc')->first()->precipTotal;
+        $dadesDiaries['HMin'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('humitat','desc')->first()->humitat;
+        $dadesDiaries['HMax'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('humitat','asc')->first()->humitat;
+        $dadesDiaries['VVentMitjana'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->avg('velocitat_vent');
+        $dadesDiaries['RafegaMaxima'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('rafega_vent','desc')->first()->rafega_vent;
+        $dadesDiaries['PMax'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('pressio','desc')->first()->pressio;
+        $dadesDiaries['PMin'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('pressio','asc')->first()->pressio;
+        return $dadesDiaries;
     }
 }

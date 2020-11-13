@@ -17,7 +17,7 @@ return [
     'serveis d\'enginyeria Informàtica' => 'serveis d\'enginyeria Informàtica',
     'Curriculum' => 'Curriculum',
     'TecnoLord Enginyeria Informàtica' => 'TecnoLord Enginyeria Informàtica',
-    '' => '',
-    '' => '',
+    'Dades Meteorològiques Vall de Lord' => 'Dades Meteoroliques Vall de Lord',
+    'Mercalord' => 'Mercalord',
     '' => '',
 ];

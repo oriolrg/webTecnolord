@@ -24,7 +24,7 @@
         <div class="single_services text-center mt-30 active wow " data-wow-duration="0.5s" data-wow-delay="1s">
             <h3 class="services_title">@lang('meteo.Precipitacó')</h3>
             <div class="services_icon">
-                <i class="">{{$precipRate}}mm</i>
+                <i class="">{{$precipRate}}mm/hr</i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
                     <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="80" ry="50" />
                 </svg>

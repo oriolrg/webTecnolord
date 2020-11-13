@@ -12,7 +12,7 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'Dades Meteo ' => 'Dades Meteo',
+    'Dades Meteo ' => 'Dades Meteo Vall de Lord',
     'Sant Llorenç de Morunys ' => 'Sant Llorenç de Morunys ',
     'Temperatura.' => 'Temperatura',
     'Temperatura mitjana' => 'Temperatura mitjana',

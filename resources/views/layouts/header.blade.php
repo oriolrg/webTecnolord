@@ -12,6 +12,12 @@
                         <ul>
                             <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow"  href="#curriculum">@lang('header.Curriculum') Oriol Riu Gispert</a></li>
                         </ul>
+                        <ul>
+                            <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow"  href="/meteo">@lang('header.Dades Meteorològiques Vall de Lord')</a></li>
+                        </ul>
+                        <ul>
+                            <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow"  href="https://mercalord.cat">@lang('header.Mercalord')</a></li>
+                        </ul>
                     </div> <!-- header hero content -->
                 </div>
             </div> <!-- row -->

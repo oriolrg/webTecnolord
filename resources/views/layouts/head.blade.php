@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="description" content="TecnoLord, empresa de la Vall de Lord de serveis informàtics: servei tècnic, xarxes, programació i disseny web. Solucions Informàtiques i noves Tecnologies per a empreses, entitats i particulars.">
+    <meta name="author" content="TecnoLord: Oriol Riu Gispert">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

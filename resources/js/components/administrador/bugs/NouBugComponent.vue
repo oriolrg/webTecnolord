@@ -17,7 +17,7 @@
             </td>
             <td>
                 <div class="form-group">
-                    <label for="name">Perque passa:</label>
+                    <label for="name">Que hauria de passar:</label>
                     <textarea type="text" class="form-control" name="perque" id="perque" v-model="fields.perque" />
                     <div v-if="errors && errors.perque" class="text-danger">{{ errors.perque[0] }}</div>
                 </div>
