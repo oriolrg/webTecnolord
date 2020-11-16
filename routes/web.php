@@ -114,11 +114,11 @@ Route::group(['prefix'=>'client','as'=>'admin.'], function(){
     });
     //rutes Administra bugs
     Route::group(['prefix'=>'bugs','as'=>'bugs.'], function(){
-        Route::get('/', [App\Http\Controllers\AdministraBugsController::class, 'getBugs'])->name('home');
-        Route::delete('/eliminar', [App\Http\Controllers\AdministraBugsController::class, 'eliminarBug'])->name('home');
-        Route::post('/nou', [App\Http\Controllers\AdministraBugsController::class, 'nouBug'])->name('home');
-        Route::post('/actualitza', [App\Http\Controllers\AdministraBugsController::class, 'actualitzaBug'])->name('home');
-        Route::post('/updateEstat', [App\Http\Controllers\AdministraBugsController::class, 'actualitzaEstatBug'])->name('home');
+        Route::get('/', [App\Http\Controllers\ClientBugsController::class, 'getBugs'])->name('home');
+        Route::delete('/eliminar', [App\Http\Controllers\ClientBugsController::class, 'eliminarBug'])->name('home');
+        Route::post('/nou', [App\Http\Controllers\ClientBugsController::class, 'nouBug'])->name('home');
+        Route::post('/actualitza', [App\Http\Controllers\ClientBugsController::class, 'actualitzaBug'])->name('home');
+        Route::post('/updateEstat', [App\Http\Controllers\ClientBugsController::class, 'actualitzaEstatBug'])->name('home');
     });
 });
 /**
