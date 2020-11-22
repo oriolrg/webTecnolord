@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         $current = Http::get('https://api.weather.com/v2/pws/observations/current?stationId=ISANTL9&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal');
         $value = $current->json('observations');
-        $projectes = ProjectePublic::where('publicat', '1')->get();
+        //$projectes = ProjectePublic::where('publicat', '1')->get();
         //return $value[0]['metric']['temp'];
         Meteo::create([
             'temperatura' => $value[0]['metric']['temp'],
@@ -51,7 +51,6 @@ class HomeController extends Controller
             'data' => $value[0]['obsTimeLocal'],
         ]);
         return view('public.welcome')
-            ->with('projectes', $projectes)
             ->with('dirVent', $value[0]['winddir'])
             ->with('velVent', $value[0]['metric']['windSpeed'])
             ->with('rafegaVent', $value[0]['metric']['windGust'])

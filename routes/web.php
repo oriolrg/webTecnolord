@@ -20,6 +20,10 @@ Auth::routes(["register" => false]);
 
 Route::get('/meteo',[App\Http\Controllers\MeteoController::class, 'index'])->name('home');
 Route::get('/meteo/save',[App\Http\Controllers\MeteoController::class, 'saveMeteo'])->name('home');
+Route::get('/meteo/dia/{dia}',[App\Http\Controllers\MeteoController::class, 'getMeteoDia'])->name('home');
+Route::get('/meteo/dia/{dia}/mes/{mes}/any/{any}',[App\Http\Controllers\MeteoController::class, 'getMeteoDiaMesAny'])->name('home');
+Route::get('/meteo/mes/{mes}/any/{any}',[App\Http\Controllers\MeteoController::class, 'getMesMeteo'])->name('home');
+Route::get('/meteo/any/{any}',[App\Http\Controllers\MeteoController::class, 'getAnyMeteo'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**

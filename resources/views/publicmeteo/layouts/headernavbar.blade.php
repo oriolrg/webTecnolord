@@ -39,9 +39,14 @@
                                     <a class="" href="{{ asset('idioma/es') }}">ES</a>
                                 </li>
                             </ul>
+
+                            <ul class="navbar-nav ml-auto inline my-2 my-lg-0">
+                                @include('layouts.user')
+                            </ul>
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
     </div> <!-- header navbar -->
+</section>

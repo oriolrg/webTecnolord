@@ -18,13 +18,13 @@
                 <li class="nav-item">
                     <a id="yearly-tab" data-toggle="tab" href="#diaria" role="tab" aria-controls="yearly" aria-selected="false">@lang('meteo.Diaria')</a>
                 </li>
-                <!--<li class="nav-item">
-                    <a id="yearly-tab" data-toggle="tab" href="#setmanal" role="tab" aria-controls="yearly" aria-selected="false">@lang('meteo.Setmanal')</a>
-                </li>
                 <li class="nav-item">
                     <a id="yearly-tab" data-toggle="tab" href="#mensual" role="tab" aria-controls="yearly" aria-selected="false">@lang('meteo.Mensual')</a>
                 </li>
                 <li class="nav-item">
+                    <a id="yearly-tab" data-toggle="tab" href="#anual" role="tab" aria-controls="yearly" aria-selected="false">@lang('meteo.Anual')</a>
+                </li>
+                <!--<li class="nav-item">
                     <a id="yearly-tab" data-toggle="tab" href="#anual" role="tab" aria-controls="yearly" aria-selected="false">@lang('meteo.Anual')</a>
                 </li>-->
             </ul>
@@ -50,17 +50,9 @@
                             </div> <!-- section title -->
                         </div>
                     </div> <!-- row -->
-                    @include('public.meteo.meteodiaria');
-                </div>
-                <div class="tab-pane fade" id="setmanal" role="tabpanel" aria-labelledby="monthly-tab">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="section_title text-center pb-25">
-                                <h5 class="sub_title">@lang('meteo.Dades Setmanals ')</h5>
-                            </div> <!-- section title -->
-                        </div>
-                    </div> <!-- row -->
-                    @include('public.meteo.meteosetmanal');
+                    @include('public.meteo.meteodiaria')
+
+                    <meteo-diaria-component></meteo-diaria-component>
                 </div>
                 <div class="tab-pane fade" id="mensual" role="tabpanel" aria-labelledby="yearly-tab">
                     <div class="row justify-content-center">
@@ -70,9 +62,8 @@
                             </div> <!-- section title -->
                         </div>
                     </div> <!-- row -->
-                    @include('public.meteo.meteomensual');
                 </div>
-                <div class="tab-pane fade" id="anual" role="tabpanel" aria-labelledby="yearly-tab">
+                <div class="tab-pane" id="anual" role="tabpanel" aria-labelledby="yearly-tab">
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="section_title text-center pb-25">
@@ -80,7 +71,7 @@
                             </div> <!-- section title -->
                         </div>
                     </div> <!-- row -->
-                    @include('public.meteo.meteoanual');
+                    <meteo-anual-component></meteo-anual-component>
                 </div>
             </div>
         </div>
@@ -88,6 +79,8 @@
             
         </div> <!-- row -->
     </div> <!-- container -->
+    
+    
 </section>
 
 <!--====== SERVICES PART ENDS ======-->

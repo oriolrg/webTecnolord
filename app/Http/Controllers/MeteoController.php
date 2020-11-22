@@ -81,44 +81,6 @@ class MeteoController extends Controller
         ]);
     }
     /**
-     * Obte les dades meteo diaries
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getDayMeteo()
-    {
-        $current = Http::get('https://api.weather.com/v2/pws/observations/current?stationId=ISANTL9&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal');
-        $data = $current->json('observations');
-        $value = end($data);
-        return $value;
-    }
-    /**
-     * Obte les dades meteo mensuals
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getMesMeteo()
-    {
-        $current = Http::get('https://api.weather.com/v2/pws/observations/current?stationId=ISANTL9&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal');
-        $data = $current->json('observations');
-        $value = end($data);
-        
-        return $value;
-    }
-    /**
-     * Obte les dades meteo anuals
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getAnyMeteo()
-    {
-        $current = Http::get('https://api.weather.com/v2/pws/observations/current?stationId=ISANTL9&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal');
-        $data = $current->json('observations');
-        $value = end($data);
-        
-        return $value;
-    }
-    /**
      * Obtenir dades diaries
      *
      * @return void
@@ -137,5 +99,109 @@ class MeteoController extends Controller
         $dadesDiaries['PMax'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('pressio','desc')->first()->pressio;
         $dadesDiaries['PMin'] = Meteo::whereDate('data', Carbon::now()->format('Y-m-d'))->orderBy('pressio','asc')->first()->pressio;
         return $dadesDiaries;
+    }
+    /**
+     * Obte les dades d'un dia en concret
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getMeteoDiaMesAny($dia, $mes, $any)
+    {
+        $dadesDiaMesAny = collect();
+        $dadesDiaMesAny = Meteo::whereYear('data', '=', $any)
+        ->whereMonth('data', '=', $mes)
+        ->whereDay('data', '=', $dia);
+        $dades['resumDia'] = $dadesDiaMesAny;
+        $dades['Tmitjana'] = $dadesDiaMesAny->avg('temperatura');
+        $dades['TMax'] = $dadesDiaMesAny->max('temperatura');
+        $dades['TMin'] = $dadesDiaMesAny->min('temperatura');
+        $dades['PTotal'] = $dadesDiaMesAny->max('precipTotal');
+        $dades['HMax'] = $dadesDiaMesAny->max('humitat');
+        $dades['HMin'] = $dadesDiaMesAny->min('humitat');
+        $dades['VVentMitjana'] = $dadesDiaMesAny->avg('velocitat_vent');
+        $dades['RafegaMaxima'] = $dadesDiaMesAny->max('rafega_vent');
+        $dades['PMax'] = $dadesDiaMesAny->max('pressio');
+        $dades['PMin'] = $dadesDiaMesAny->min('pressio');
+
+        return $dades;
+        return $dadesDiaMesAny
+        ->get();
+        $current = Http::get('https://api.weather.com/v2/pws/history/all?stationId=ISANTL9&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal&year=20200512');
+        $data = $current->json('observations');
+        $value = end($data);
+        return $value;
+    }
+    /**
+     * Obte les dades meteo mensuals
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getMeteoDia($dia)
+    {
+        $dadesMensuals = collect();
+        $dadesMensuals = Meteo::whereDate('data', '=', $dia)
+        ->get();
+        $dades['desglosDia'] = $dadesMensuals;
+        $dades['Tmitjana'] = $dadesMensuals->avg('temperatura');
+        $dades['TMax'] = $dadesMensuals->max('temperatura');
+        $dades['TMin'] = $dadesMensuals->min('temperatura');
+        $dades['PTotal'] = $dadesMensuals->max('precipTotal');
+        $dades['HMax'] = $dadesMensuals->max('humitat');
+        $dades['HMin'] = $dadesMensuals->min('humitat');
+        $dades['VVentMitjana'] = $dadesMensuals->avg('velocitat_vent');
+        $dades['RafegaMaxima'] = $dadesMensuals->max('rafega_vent');
+        $dades['PMax'] = $dadesMensuals->max('pressio');
+        $dades['PMin'] = $dadesMensuals->min('pressio');
+
+        return $dades;
+    }
+    /**
+     * Obte les dades meteo mensuals
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getMesMeteo($mes, $any)
+    {
+        $dadesMensuals = collect();
+        $dadesMensuals = Meteo::whereYear('data', '=', $any)
+        ->whereMonth('data', '=', $mes)
+        ->get();
+        $dades['desglosMes'] = $dadesMensuals;
+        $dades['Tmitjana'] = $dadesMensuals->avg('temperatura');
+        $dades['TMax'] = $dadesMensuals->max('temperatura');
+        $dades['TMin'] = $dadesMensuals->min('temperatura');
+        $dades['PTotal'] = $dadesMensuals->max('precipTotal');
+        $dades['HMax'] = $dadesMensuals->max('humitat');
+        $dades['HMin'] = $dadesMensuals->min('humitat');
+        $dades['VVentMitjana'] = $dadesMensuals->avg('velocitat_vent');
+        $dades['RafegaMaxima'] = $dadesMensuals->max('rafega_vent');
+        $dades['PMax'] = $dadesMensuals->max('pressio');
+        $dades['PMin'] = $dadesMensuals->min('pressio');
+
+        return $dades;
+    }
+    /**
+     * Obte les dades meteo anuals
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAnyMeteo($any)
+    {
+        $dadesAnuals = collect();
+        $dadesAnuals = Meteo::whereYear('data', '=', $any)
+        ->get();
+        $dades['desglosAny'] = $dadesAnuals;
+        $dades['Tmitjana'] = $dadesAnuals->avg('temperatura');
+        $dades['TMax'] = $dadesAnuals->max('temperatura');
+        $dades['TMin'] = $dadesAnuals->min('temperatura');
+        $dades['PTotal'] = $dadesAnuals->max('precipTotal');
+        $dades['HMax'] = $dadesAnuals->max('humitat');
+        $dades['HMin'] = $dadesAnuals->min('humitat');
+        $dades['VVentMitjana'] = $dadesAnuals->avg('velocitat_vent');
+        $dades['RafegaMaxima'] = $dadesAnuals->max('rafega_vent');
+        $dades['PMax'] = $dadesAnuals->max('pressio');
+        $dades['PMin'] = $dadesAnuals->min('pressio');
+
+        return $dades;
     }
 }

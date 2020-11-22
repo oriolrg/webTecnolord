@@ -14,7 +14,7 @@
             <td>
                 <div class="form-group">
                     <label for="name">Descripcio Projecte</label>
-                    <input type="text" class="form-control" name="descripcio" id="descripcio" v-model="fields.descripcio" />
+                    <textarea type="text" class="form-control" name="descripcio" id="descripcio" v-model="fields.descripcio" />
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
             </td>

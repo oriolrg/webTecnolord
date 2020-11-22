@@ -37,7 +37,7 @@ Vue.component('nou-historia-component', require('./components/administrador/hist
 Vue.component('select-projecte-component', require('./components/administrador/histories/SelectProjecteComponent.vue').default);
 /* Components administra Bugs */
 Vue.component('administra-bugs-component', require('./components/administrador/bugs/AdministraBugsComponent.vue').default);
-Vue.component('nou-bug-component', require('./components/client/bugs/NouBugComponent.vue').default);
+Vue.component('nou-bug-component', require('./components/administrador/bugs/NouBugComponent.vue').default);
 /* Components administra Projectes */
 Vue.component('administra-projectes-publicats-component', require('./components/administrador/projectesPublicats/AdministraProjectesPublicatsComponent.vue').default);
 
@@ -55,6 +55,18 @@ Vue.component('client-nou-historia-component', require('./components/client/hist
 /* Components client Bugs */
 Vue.component('client-bugs-component', require('./components/client/bugs/AdministraBugsComponent.vue').default);
 Vue.component('client-nou-bug-component', require('./components/client/bugs/NouBugComponent.vue').default);
+
+Vue.component('carrousel-image-component', require('./components/CarrouselImageComponent.vue').default);
+
+/**
+ * 
+ * Components Publics
+ * 
+ * */
+Vue.component('meteo-mensual-component', require('./components/public/MeteoMensualComponent.vue').default);
+Vue.component('meteo-diaria-component', require('./components/public/MeteoDiariaComponent.vue').default);
+Vue.component('meteo-anual-component', require('./components/public/MeteoAnualComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

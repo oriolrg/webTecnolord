@@ -1495,20 +1495,28 @@ p.form-message.success, p.form-message.error {
 .logo{
   position: absolute;
   float: left;
-  width: 250px;
-  left: -4em;
+  width: 230px;
+  left: 0em;
   margin-top: -70px;
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1380px) {
+  .header_navbar{
+    height: 100px;
+  }
   .logo{
-    position: absolute;
-    float: left;
-    width: 250px;
-    left: 0em;
+    margin-top: -25px;
+  }
+
+}
+@media only screen and (max-width: 991px) {
+  .header_navbar{
+    height: 50px;
+  }
+  .logo{
     margin-top: -70px;
   }
-}
 
+}
 
 
 

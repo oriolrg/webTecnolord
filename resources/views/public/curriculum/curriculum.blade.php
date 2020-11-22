@@ -31,17 +31,17 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="informatica" role="tabpanel" aria-labelledby="monthly-tab">
                             <div class="row justify-content-center">
-                                @include('public.curriculum.currInformatica');
+                                @include('public.curriculum.currInformatica')
                             </div> <!-- row -->
                         </div>
                         <div class="tab-pane fade" id="coneixements" role="tabpanel" aria-labelledby="yearly-tab">
                             <div class="row justify-content-center">
-                                @include('public.curriculum.currFormacioVaria');
+                                @include('public.curriculum.currFormacioVaria')
                             </div> <!-- row -->
                         </div>
                         <div class="tab-pane fade" id="habilitats" role="tabpanel" aria-labelledby="yearly-tab">
                             <div class="row justify-content-center">
-                                @include('public.curriculum.currConeixements');
+                                @include('public.curriculum.currConeixements')
                             </div> <!-- row -->
                         </div>
                     </div>

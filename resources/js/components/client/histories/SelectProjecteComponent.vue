@@ -4,8 +4,14 @@
         <select v-model="selected" name="projecte" v-on:change="click" required>
         <!--  objeto literal en línea --> -->
             <option value="" @click="click">Selecciona una Projecte</option>
-            <option  v-for="(result ,index) in data_results" v-bind:key="index" v-bind:value="result.id" >{{ result.name }}</option>
+            <option  v-for="(result ,index) in data_results" v-bind:key="index" v-bind:value="result" >{{ result.name }}</option>
         </select>
+        <ul v-if="this.selected.descripcio">
+            <li class="list-group-item">
+                <h3 class="mt-4">Descripció del Projecte</h3>
+                <p>{{this.selected.descripcio}}</p>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -38,7 +44,7 @@ export default {
         },
         click(){
             //emeto l'opció selecionada
-            this.$emit('clicked', this.selected);
+            this.$emit('clicked', this.selected.id);
         }
     },
     beforeMount(){

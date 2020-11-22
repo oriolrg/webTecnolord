@@ -8,7 +8,7 @@
       <![endif]-->
       <!-- API https://api.weather.com/v2/pws/history/all?stationId=ISANTL9&format=json&units=h&date=20201110&apiKey=979bf738d55144929bf738d551f49248 -->
        
-       
+        <div id="app">
         @include('layouts.preloader');
         
         @include('layouts.headernavbar');
@@ -19,7 +19,7 @@
     
         @include('public.serveis')
     
-        @include('public.portafoli')
+        @include('public.portafoli.portafoli')
     
         @include('public.meteo.meteo')
     
@@ -52,7 +52,7 @@
     -->
     
         <!--====== PART ENDS ======-->
-
+        </div>
         @include('layouts.llibreries');
     
     </body>

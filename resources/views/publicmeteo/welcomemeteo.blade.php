@@ -9,11 +9,14 @@
       <!-- API https://api.weather.com/v2/pws/history/all?stationId=ISANTL9&format=json&units=h&date=20201110&apiKey=979bf738d55144929bf738d551f49248 -->
        
        
+      <div id="app">
         @include('layouts.preloader');
         
         @include('publicmeteo.layouts.headernavbar');
     
         @include('public.meteo.meteo')
+
+        @include('public.webcams')
     
         @include('public.contacte')
     
@@ -42,12 +45,8 @@
     -->
     
         <!--====== PART ENDS ======-->
-
-        @include('layouts.llibreries');
-        <canvas id="canvas" width="450" height="402" style="border:3px solid #ccc;">
-            Tu navegador no soporta canvas
-            </canvas>
-        <script src="{{ asset('assets/js/webcam.js') }}"></script>
+      </div>
+        @include('layouts.llibreries')
     </body>
     
     </html>

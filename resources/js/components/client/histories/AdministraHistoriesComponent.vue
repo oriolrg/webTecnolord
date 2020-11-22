@@ -6,7 +6,6 @@
         </div>
         <client-nou-historia-component v-if="this.projecte_id"  @noves_histories="noves_histories" :data_historia="this.searchquery" :projecte_id="this.projecte_id"></client-nou-historia-component>
         <b-card-group columns v-if="this.projecte_id">
-
             <b-card  v-for="(result ,index) in data_results" v-bind:key="index" v-bind:value="result.id" @click="click" header-tag="header" footer-tag="footer" v-bind:class="{ 'text-black bg-warning': result.estat == 0,'text-black bg-info': result.estat == 1, 'text-white bg-success': result.estat == 2}">
                 <h4 class="card-title center">{{result.name}}</h4>
                 <h5>Com a:</h5>
@@ -90,17 +89,19 @@
             borrarHistoria: function(id){
                 this.visioResultats = true;
                 window.axios = require('axios');
-
                 window.axios.defaults.headers.common = {
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 };
-                this.data_results = [];
                 let url = this.url +'/eliminar/';
                 //let url = "/autocomplete/categories";
-                axios.delete(url,{params: {id: id,projecte_id: this.projecte_id}}).then(response => {
-                    this.data_results = response.data;
-                });
+                var r = confirm("Estas segur que vols borrar la història?");
+                if (r == true) {
+                    this.data_results = [];
+                    axios.delete(url,{params: {id: id,projecte_id: this.projecte_id}}).then(response => {
+                        this.data_results = response.data;
+                    });
+                }
             },
             //accions al clicar a editar una historia
             updateHistoria: function(historia){

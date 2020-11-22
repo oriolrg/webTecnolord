@@ -3,7 +3,7 @@
         <table class="table no-wrap user-table mb-0">
             <td>
                 <div class="form-group">
-                    <label for="name">Titol Problema:</label>
+                    <label for="name">Titol Historia:</label>
                     <textarea type="text" class="form-control" name="name" id="name" v-model="fields.name" />
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
@@ -24,15 +24,15 @@
             </td>
             <td><br>
                 <button  v-if="fields.id" v-on:click="actualitza" class="btn btn-primary">Actualitza</button>
-                <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Canscela</button>
-                <button  v-else v-on:click="nou" class="btn btn-primary">Guardar Incidència</button>
+                <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Cancela</button>
+                <button  v-else v-on:click="nou" class="btn btn-primary">Crear Bug</button>
             </td>
         </table>
     </div>
 </template>
 
 <script>
-    import { adminBugsUrl } from '../../../config.js';
+    import { clientsBugsUrl } from '../../../config.js';
     export default {
         //declaro la propietat que rebo del component pare projecte_id
         props: {
@@ -50,14 +50,14 @@
                 data_results: [],
                 fields: {},
                 errors: {},
-                url: adminBugsUrl,
+                url: clientsBugsUrl,
             }
         },
         methods: {
             nou: function (event) {
                 this.fields.id = this.projecte_id;
                 this.data_results = [];
-                axios.post('/client/bugs/nou', this.fields).then(response => {
+                axios.post(this.url + '/nou', this.fields).then(response => {
                     alert('Bug Creat!');
                     this.data_results = response.data;
                     this.$emit('noves_histories', this.data_results);
@@ -74,7 +74,7 @@
                 });
             },
             actualitza: function (event) {
-                axios.post('/client/bugs/actualitza/', this.fields).then(response => {
+                axios.post(this.url + '/actualitza', this.fields).then(response => {
                     alert('Bug Actualitzat!');
                     this.data_results = response.data;
                     this.fields = {};

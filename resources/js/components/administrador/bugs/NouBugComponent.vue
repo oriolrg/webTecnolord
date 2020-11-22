@@ -57,7 +57,7 @@
             nou: function (event) {
                 this.fields.id = this.projecte_id;
                 this.data_results = [];
-                axios.post('/admin/bugs/nou', this.fields).then(response => {
+                axios.post(this.url + '/nou', this.fields).then(response => {
                     alert('Bug Creat!');
                     this.data_results = response.data;
                     this.$emit('noves_histories', this.data_results);
@@ -74,7 +74,7 @@
                 });
             },
             actualitza: function (event) {
-                axios.post('/admin/bugs/actualitza/', this.fields).then(response => {
+                axios.post(this.url + '/actualitza', this.fields).then(response => {
                     alert('Bug Actualitzat!');
                     this.data_results = response.data;
                     this.fields = {};

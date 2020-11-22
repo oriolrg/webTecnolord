@@ -111,12 +111,16 @@
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 };
-                this.data_results = [];
                 let url = '/admin/bugs/eliminar/';
                 //let url = "/autocomplete/categories";
-                axios.delete(url,{params: {id: id,projecte_id: this.projecte_id}}).then(response => {
-                    this.data_results = response.data;
-                });
+                var r = confirm("Estas segur que vols borrar la història?");
+                if (r == true) {
+                    this.data_results = [];
+                    axios.delete(url,{params: {id: id,projecte_id: this.projecte_id}}).then(response => {
+                        this.data_results = response.data;
+                    });
+                }
+                
             },
             //accions al clicar a editar una historia
             updateBug: function(historia){

@@ -4,7 +4,7 @@
         <div class="table-responsive">
             <client-select-projectes-component @clicked="onSelectProjecte"></client-select-projectes-component>
         </div>
-        <nou-bug-component v-if="this.projecte_id"  @noves_histories="noves_histories" :projecte_id="this.projecte_id" :data_bug="this.data_bug"></nou-bug-component>
+        <client-nou-bug-component  v-if="this.projecte_id"  @noves_histories="noves_histories" :projecte_id="this.projecte_id" :data_bug="this.data_bug"></client-nou-bug-component>
         <b-card-group columns v-if="this.projecte_id">
             <b-card  v-for="(result ,index) in data_results" v-bind:key="index" v-bind:value="result.id" @click="click" header-tag="header" footer-tag="footer" v-bind:class="{ 'text-black bg-warning': result.estat == 0,'text-black bg-info': result.estat == 1, 'text-white bg-success': result.estat == 2}">
                 <h4 class="card-title center">{{result.name}}</h4>
@@ -107,12 +107,14 @@
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 };
-                this.data_results = [];
-                let url = this.url+'eliminar/';
-                //let url = "/autocomplete/categories";
-                axios.delete(url,{params: {id: id,projecte_id: this.searchquery}}).then(response => {
-                    this.data_results = response.data;
-                });
+                let url = this.url+'/eliminar';
+                var r = confirm("Estas segur que vols borrar la història?");
+                if (r == true) {
+                    this.data_results = [];
+                    axios.delete(url,{params: {id: id,projecte_id: this.searchquery}}).then(response => {
+                        this.data_results = response.data;
+                    });
+                }
             },
             //accions al clicar a editar una historia
             updateBug: function(historia){

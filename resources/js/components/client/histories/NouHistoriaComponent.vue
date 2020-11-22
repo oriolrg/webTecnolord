@@ -63,7 +63,6 @@
         methods: {
             nou: function (event) {
                 this.fields.id = this.projecte_id;
-                alert(this.projecte_id);
                 this.data_results = [];
                 axios.post(this.url + '/nou', this.fields).then(response => {
                     alert('Historia Creada!');
@@ -82,12 +81,16 @@
                 });
             },
             actualitza: function (event) {
-                axios.post('/admin/histories/actualitza/', this.fields).then(response => {
+                axios.post(this.url + '/actualitza', this.fields).then(response => {
                     alert('Historia Actualitzada!');
                     this.data_results = response.data;
                     this.fields = {};
                     this.$emit('nous_usuaris', this.data_results);
                 }).catch(error => {
+                    if (error.response.status === 301) {
+                    alert("Error del servidor");
+                    this.errors = error.response.data.errors || {};
+                    }
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
                     }

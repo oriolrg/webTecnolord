@@ -26,14 +26,14 @@
             <div class="services_icon">
                 <i class="">{{$precipRate}}mm/hr</i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
-                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="80" ry="50" />
+                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="150" ry="50" />
                 </svg>
             </div>
             <h3 class="services_title">@lang('meteo.Precipitacó total')</h3>
             <div class="services_icon">
                 <i class="">{{$precipTotal}}mm</i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
-                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="80" ry="50" />
+                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="150" ry="50" />
                 </svg>
             </div>
         </div> <!-- single services -->
@@ -80,14 +80,14 @@
             <div class="services_icon">
                 <i class="">{{$velVent}}m/s</i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
-                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="80" ry="50" />
+                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="120" ry="50" />
                 </svg>
             </div>
             <h3 class="services_title">@lang('meteo.Ràfega de vent:')</h3>
             <div class="services_icon">
                 <i class="">{{$rafegaVent}}m/s</i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
-                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="80" ry="50" />
+                    <ellipse class="services_shape" id="Polygon_12" data-name="Polygon 12" cx="150" cy="50" rx="120" ry="50" />
                 </svg>
             </div>
             <h3 class="services_title">@lang('meteo.Direcció del Vent')</h3>
