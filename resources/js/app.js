@@ -66,6 +66,12 @@ Vue.component('carrousel-image-component', require('./components/CarrouselImageC
 Vue.component('meteo-mensual-component', require('./components/public/MeteoMensualComponent.vue').default);
 Vue.component('meteo-diaria-component', require('./components/public/MeteoDiariaComponent.vue').default);
 Vue.component('meteo-anual-component', require('./components/public/MeteoAnualComponent.vue').default);
+Vue.component('meteo-app', require('./components/public/meteo/MeteoApp.vue').default);
+/**
+ * 
+ * Components Meteo
+ * 
+ * */
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -74,6 +80,7 @@ Vue.component('meteo-anual-component', require('./components/public/MeteoAnualCo
  */
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import { adminHistoriasUrl } from './config.js';
+
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)

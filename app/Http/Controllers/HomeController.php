@@ -63,8 +63,7 @@ class HomeController extends Controller
             ->with('radSolar', $value[0]['solarRadiation'])
             ->with('uv', $value[0]['uv'])
             ->with('pressio', $value[0]['metric']['pressure'])
-            ->with('dataActual', $value[0]['obsTimeLocal'])
-            ->with('dadesDiaries',  MeteoController::getDiariData());
+            ->with('dataActual', $value[0]['obsTimeLocal']);
     }
     /**
      * Obtenir dades diaries
