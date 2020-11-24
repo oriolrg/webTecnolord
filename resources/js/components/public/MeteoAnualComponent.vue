@@ -124,8 +124,6 @@ export default {
                     this.seriesData = response.data.desglosMes
                 });
             }
-            
-            
         },
         obtenirDadesInicials(){
 			window.axios = require('axios');
@@ -142,8 +140,6 @@ export default {
                 this.data_results = response.data;
                 this.seriesData = response.data.desglosMes
             });
-            
-            
         },
     },
     beforeMount(){

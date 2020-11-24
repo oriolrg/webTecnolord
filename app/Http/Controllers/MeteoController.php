@@ -88,7 +88,7 @@ class MeteoController extends Controller
         $dadesMensuals = Meteo::whereYear('data', '=', $any)
         ->whereMonth('data', '=', $mes)
         ->get();
-        $dades['desglosDia'] = $dadesMensuals;
+        $dades['desglosMes'] = $dadesMensuals;
 
         return $dades;
     }

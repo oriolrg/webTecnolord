@@ -120,16 +120,15 @@ export default {
                     this.seriesData = response.data.desglosAny
                 });
             }
-            if(this.selectedmes.id && this.selectedany){
-                url = 'meteo/mes/'+this.selectedmes.id+'/any/'+this.selectedany;
+            else{
                 //let url = "/autocomplete/categories";
+                const today = new Date();
+                url = 'meteo/any/'+today.getFullYear();
                 axios.get(url).then(response => {
                     this.data_results = response.data;
                     this.seriesData = response.data.desglosMes
                 });
             }
-            
-            
         },
         obtenirDadesInicials(){
 			window.axios = require('axios');
@@ -146,8 +145,6 @@ export default {
                 this.data_results = response.data;
                 this.seriesData = response.data.desglosMes
             });
-            
-            
         },
     },
     beforeMount(){
