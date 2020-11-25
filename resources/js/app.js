@@ -56,16 +56,12 @@ Vue.component('client-nou-historia-component', require('./components/client/hist
 Vue.component('client-bugs-component', require('./components/client/bugs/AdministraBugsComponent.vue').default);
 Vue.component('client-nou-bug-component', require('./components/client/bugs/NouBugComponent.vue').default);
 
-Vue.component('carrousel-image-component', require('./components/CarrouselImageComponent.vue').default);
 
 /**
  * 
  * Components Publics
  * 
  * */
-Vue.component('meteo-mensual-component', require('./components/public/MeteoMensualComponent.vue').default);
-Vue.component('meteo-diaria-component', require('./components/public/MeteoDiariaComponent.vue').default);
-Vue.component('meteo-anual-component', require('./components/public/MeteoAnualComponent.vue').default);
 Vue.component('meteo-app', require('./components/public/meteo/MeteoApp.vue').default);
 /**
  * 

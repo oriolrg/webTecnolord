@@ -1,69 +1,65 @@
 <template>
   <div>
-    <opcions-content></opcions-content>
     <div id="ancestor">
       <div class="container-fluid" id="app">
         <div class="row">
           <div id="sidebar" class="col-md-3 col-sm-4 col-xs-12 sidebar">
             <div id="info">
               <div class="wrapper-left">
-                Temperatura:
+                <h1>Temperatura:</h1>
                 <div id="current-weather">
                   {{ tempsActual.temp }}
                   <span>°C</span>
                 </div>
-                Maxima i Mínima:
                 <div id="max-detail">
                   <i>▲</i>
-                  {{ tempsActual.avuiMaxMin.avuiTempMax }}
-                  <span>°C</span>
-                </div>
-                <div id="min-detail">
+                  {{ tempsActual.avuiMaxMin.avuiTempMax }}°C
                   <i>▼</i>
-                  {{ tempsActual.avuiMaxMin.avuiTempMin }}
-                  <span>°C</span>
+                  {{ tempsActual.avuiMaxMin.avuiTempMin }}°C
                 </div>
-                Humitat:
+                <h1>Humitat:</h1>
                 <div id="current-weather">
-                  {{ tempsActual.humitat }}
-                  <span>%</span>
+                  <p>{{ tempsActual.humitat }}%</p>
                 </div>
-                Pressio:
+                <h1>Direcció Vent</h1>
                 <div id="current-weather">
-                  {{ tempsActual.pressio }}
-                  <span></span>
+                      <p>{{ highlights.windStatus.derivedWindDirection }}</p>
                 </div>
-                Pluja acululada:
+                <h1>Velocitat Vent</h1>
                 <div id="current-weather">
-                  {{ tempsActual.pluja.precipTotal }}
-                  <span>l</span>
+                      <p>{{ highlights.windStatus.windSpeed }} km/h</p>
                 </div>
-                Intensitat pluja:
+                <h1>Ràfega Vent</h1>
                 <div id="current-weather">
-                  {{ tempsActual.pluja.precipRate }}
-                  <span>l h</span>
+                      <p>{{ highlights.windStatus.windRafaga}} km/h</p>
                 </div>
-                Punt de Rosada:
+                <h1>Pressio:</h1>
                 <div id="current-weather">
-                  {{ tempsActual.puntRosada }}
-                  <span>°C</span>
+                  <p>{{ tempsActual.pressio }}</p>
                 </div>
-                Temperatura Xafogor:
+                <h1>Pluja acululada:</h1>
                 <div id="current-weather">
-                  {{ tempsActual.tempXafogor }}
-                  <span>°C</span>
+                  <p>{{ tempsActual.pluja.precipTotal }}</p>
                 </div>
-                Temperatura de Sensació:
+                <h1>Intensitat pluja:</h1>
                 <div id="current-weather">
-                  {{ tempsActual.temperaturaSensacio }}
-                  <span>°C</span>
+                  <p>{{ tempsActual.pluja.precipRate }}</p>
                 </div>
-                Index Ultravioleta:
+                <h1>Punt de Rosada:</h1>
                 <div id="current-weather">
-                  {{ tempsActual.uvIndex }}
-                  <span>
-                    {{ tempsActual.uvIndexNivell }}
-                  </span>
+                  <p>{{ tempsActual.puntRosada }}°C</p>
+                </div>
+                <h1>Temperatura Xafogor:</h1>
+                <div id="current-weather">
+                  <p>{{ tempsActual.tempXafogor }}°C</p>
+                </div>
+                <h1>Temperatura de Sensació:</h1>
+                <div id="current-weather">
+                  <p>{{ tempsActual.temperaturaSensacio }}°C</p>
+                </div>
+                <h1>Index Ultravioleta:</h1>
+                <div id="current-weather">
+                  <p>{{ tempsActual.uvIndex }} {{ tempsActual.uvIndexNivell }}</p>
                 </div>
               </div>
             </div>
@@ -82,13 +78,11 @@
 
 <script>
 import Content from './components/Content.vue';
-import Opcions from './components/Opcions.vue';
 export default {
   name: 'app',
   props: [],
   components: {
     'dashboard-content': Content,
-    'opcions-content': Opcions,
   },
   data() {
     return {

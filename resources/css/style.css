@@ -54,6 +54,12 @@ body {
    line-height: 106px;
    position: relative;
 }
+#current-weather-pressio {
+   color: #ffffff;
+   font-size: 6rem;
+   line-height: 106px;
+   position: relative;
+}
 
 #current-weather>span {
    color: #ffffff;
