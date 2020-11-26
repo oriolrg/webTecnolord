@@ -25,7 +25,7 @@
         Vent
         <ejs-chart id="vent" :primaryXAxis='primaryXAxisv' :primaryYAxis='primaryYAxisv'>
             <e-series-collection>
-                <e-series :dataSource='tempVar' type='Polar' xName='direccio_vent' yName='velocitat_vent' drawType='Scatter'> </e-series>
+                <e-series :dataSource='tempVar' type='Polar' xName='direccio_vent' yName='rafega_vent' drawType='Scatter'> </e-series>
             </e-series-collection>
         </ejs-chart>
         Direcció del Vent
@@ -77,9 +77,9 @@ export default {
                 labelFormat: '{value}km/h',
             },
             primaryXAxisV: {
-          valueType: 'Category',
-                minimum: 0, maximum: 360, interval: 45,
-            },
+                valueType: 'Category',
+                    minimum: 0, maximum: 360, interval: 45,
+                },
             primaryYAxisV: {
                 minimum: 0, maximum: this.VVmax, interval: 2,
                 title: 'Litres',

@@ -35,21 +35,6 @@ class HomeController extends Controller
         $value = $current->json('observations');
         //$projectes = ProjectePublic::where('publicat', '1')->get();
         //return $value[0]['metric']['temp'];
-        Meteo::create([
-            'temperatura' => $value[0]['metric']['temp'],
-            'temperatura_sensacio' => $value[0]['metric']['windChill'],
-            'humitat' => $value[0]['humidity'],
-            'direccio_vent' => $value[0]['winddir'],
-            'velocitat_vent' => $value[0]['metric']['windSpeed'],
-            'rafega_vent' => $value[0]['metric']['windGust'],
-            'pressio' => $value[0]['metric']['pressure'],
-            'precipRate' => $value[0]['metric']['precipRate'],
-            'precipTotal' => $value[0]['metric']['precipTotal'],
-            'punt_rosada' => $value[0]['metric']['dewpt'],
-            'radiacio_solar' => $value[0]['solarRadiation'],
-            'uv' => $value[0]['uv'],
-            'data' => $value[0]['obsTimeLocal'],
-        ]);
         return view('public.welcome')
             ->with('dirVent', $value[0]['winddir'])
             ->with('velVent', $value[0]['metric']['windSpeed'])

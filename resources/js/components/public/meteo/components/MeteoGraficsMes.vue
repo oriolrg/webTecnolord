@@ -22,6 +22,12 @@
                 <e-series :dataSource='tempVarMes' type='Polar' xName='data' yName='precipTotal' drawType='Area'> </e-series>
             </e-series-collection>
         </ejs-chart>
+        Vent
+        <ejs-chart id="vent" :primaryXAxis='primaryXAxisv' :primaryYAxis='primaryYAxisv'>
+            <e-series-collection>
+                <e-series :dataSource='tempVarMes' type='Polar' xName='direccio_vent' yName='rafega_vent' drawType='Scatter'> </e-series>
+            </e-series-collection>
+        </ejs-chart>
         Direcció del Vent
         <ejs-chart id="direccioVentAny" width='100%' height='350px' :primaryXAxis='primaryXAxis' :primaryYAxis='primaryYAxisDV'>
             <e-series-collection>
@@ -38,14 +44,14 @@
 </template>
 
 <script>
-import { Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartPlugin, AreaSeries, LineSeries, DateTime} from "@syncfusion/ej2-vue-charts";
+import { Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartPlugin, AreaSeries, LineSeries, DateTime, ScatterSeries} from "@syncfusion/ej2-vue-charts";
 
 
 Vue.use(ChartPlugin);
 export default {
     components: {},
     provide: {
-        chart: [Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, AreaSeries, LineSeries, DateTime]
+        chart: [Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, AreaSeries, LineSeries, DateTime, ScatterSeries]
     },
     data() {
         return {
@@ -69,6 +75,15 @@ export default {
                 minimum: 0, maximum: this.VVmax, interval: 2,
                 title: 'Velocitat del Vent',
                 labelFormat: '{value}km/h',
+            },
+            primaryXAxisV: {
+                valueType: 'Category',
+                    minimum: 0, maximum: 360, interval: 45,
+                },
+            primaryYAxisV: {
+                minimum: 0, maximum: this.VVmax, interval: 2,
+                title: 'Litres',
+                labelFormat: '{value}'
             },
             primaryXAxisP: {
                 valueType: 'Category'
