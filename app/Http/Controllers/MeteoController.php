@@ -32,7 +32,10 @@ class MeteoController extends Controller
         $value = $current->json('observations');
 
         return view('publicmeteo.welcomemeteo')
-        ->with('dataActual', $value[0]['obsTimeLocal']);
+        ->with('dataActual', $value[0]['obsTimeLocal']);/*
+        ->with('temperatura', $value['metric']['temp'])
+        ->with('humitat', $value['humidity'])
+        ->with('pressio', $value['metric']['pressure']);*/
     }
     /**
      * Guarda les dades meteo

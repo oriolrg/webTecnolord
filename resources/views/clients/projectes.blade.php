@@ -7,7 +7,8 @@
         @include('layouts.preloader');
         
         @include('clients.layouts.headernavbar');
-        <div class="d-flex" id="wrapper">
+        <section>
+          <div class="d-flex" id="wrapper">
 
             @include('clients.layouts.leftMenu')
             <div id="app">
@@ -26,12 +27,12 @@
             });
           </script>
         
-        <!--====== BACK TOP TOP PART START ======-->
-    
-        <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
+          <!--====== BACK TOP TOP PART START ======-->
+      
+          <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
 
-        @include('layouts.llibreries');
-    
+          @include('layouts.llibreries');
+        </section>
     </body>
     
     </html>

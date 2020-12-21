@@ -26,3 +26,4 @@
             </div> <!-- row -->
         </div> <!-- container -->
     </div> <!-- header navbar -->
+</section>

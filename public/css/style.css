@@ -287,3 +287,26 @@ hr {
        flex: auto;
    }
 }
+.caixaCaption{
+   position: relative;
+   display: inline-block;
+}
+.pastillaMeteo{
+   background-color: rgba(54, 54, 54, 0.2);
+   position: absolute;
+      top: 0px;
+      left: 0;
+      width: 50%;
+      height: 1005;
+}
+.text1{
+      margin: 0 auto;
+      width: 300px;
+      color: white;
+}
+.text2{
+   margin: 0 auto;
+   width: 300px;
+   height: 100%;
+   color: white;
+}

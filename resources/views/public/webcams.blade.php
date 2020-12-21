@@ -64,6 +64,19 @@
                     </div>-->
                 </div> <!-- row -->
             </div>
+            <div class="col-lg-4 col-md-7">
+                <div class="single_blog mt-30 wow fadeIn" data-wow-duration="0.5s" data-wow-delay="0.6s">
+                    <div class="caixaCaption blog_image">
+                        <img src="https://tecnolord.cat/webcam.php?cam=bofia" alt="bofia">
+                    </div>
+                    <!--<div class="blog_content">
+                        <ul class="blog_meta d-flex justify-content-between">
+                            <li></li>
+                        </ul>
+                        <h3 class="blog_title"><a href="#"></a></h3>
+                    </div>-->
+                </div> <!-- row -->
+            </div>
         </div> <!-- row -->
     </div> <!-- container -->
 </section>

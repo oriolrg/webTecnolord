@@ -1,6 +1,6 @@
  <!-- Sidebar -->
  <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">Start Bootstrap </div>
+    <div class="sidebar-heading"></div>
     <div class="list-group list-group-flush">
       <a href="{{url('/clients/projectes')}}" class="list-group-item list-group-item-action bg-light">Projectes</a>
       <a href="{{url('/clients/histories')}}" class="list-group-item list-group-item-action bg-light">Histories d'usuari</a>
