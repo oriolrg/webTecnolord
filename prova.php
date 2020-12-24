@@ -9,18 +9,23 @@ function curl($url) {
     return $info; // Devuelve la información de la función
 }
 
-$sitioweb = curl("https://es.snow-forecast.com/resorts/Tavascan-Pleta-del-Prat/6day/mid");  // Ejecuta la función curl escrapeando el sitio web https://devcode.la and regresa el valor a la variable $sitioweb
+$sitioweb = curl("https://app.weathercloud.net/d0997685975#profile");  // Ejecuta la función curl escrapeando el sitio web https://devcode.la and regresa el valor a la variable $sitioweb
 //creamos nuevo DOMDocument y cargamos la url
 $dom = new DOMDocument();
 @$dom->loadHTML($sitioweb);
 //obtenemos todos los div de la url
-$divs = $dom->getElementsByTagName( 'tr' );
+//Obtener el elemento por el id "textoejemplo"
+$textoejemplo = $dom->getElementById('temp_cur');
+    
+//Obtener el texto del elemento
+$texto = $textoejemplo->textContent;
+echo $texto;
 //recorremos los divs
-foreach( $divs as $div ){
+//$dias = $dom->getElementById( 'temp_cur' );
+//echo $doc->saveHTML($divs);
+foreach( $textoejemplo as $div ){
+    echo $div->nodeValue;
     //si encentramos la clase mc-title nos quedamos con el titulo
-    if( $div->getAttribute( 'class' ) === 'forecast-table-days forecast-table__row' ){
-        $dias = $div->nodeValue;
-    }
     if( $div->getAttribute( 'class' ) === 'forecast-table-time forecast-table__row' ){
         $hora = $div->nodeValue;
     }
@@ -38,6 +43,22 @@ foreach( $divs as $div ){
         $cota_neu = $div->nodeValue;
     }
 }
+$divs = $dom->getElementsByTagName( 'div' );
+//recorremos los divs
+foreach( $divs as $div ){
+    //si encentramos la clase mc-title nos quedamos con el titulo
+    if( $div->getAttribute( 'class' ) === 'current-temp' ){
+        $temperatura = $div->nodeValue;
+        $temperatura = (intval($temperatura) - 32) / 1.8;
+    }
+}
+$divs = $dom->getElementsByTagName( 'span' );
+//recorremos los divs
+foreach( $divs as $div ){
+    if( $div->getAttribute( 'class' ) === 'test-false wu-unit wu-unit-humidity ng-star-inserted' ){
+        $humitat = $div->nodeValue;
+    }
+}
 for($i=0;$i<strlen($cota_neu);$i+=4){
     echo 'Cota de neu:' . substr($cota_neu, $i, 4) . ' ';
     echo '<br>';
@@ -45,7 +66,7 @@ for($i=0;$i<strlen($cota_neu);$i+=4){
 echo $hora.'<br>';
 echo $cota_neu.'<br>';
 echo $humitat.'<br>';
-echo $pluja.'<br>';
+echo $temperatura.'<br>';
 echo $neu.'<br>';
 echo $dias.'<br>';
 ?>

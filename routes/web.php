@@ -24,6 +24,7 @@ Route::get('/meteo/dia/{dia}',[App\Http\Controllers\MeteoController::class, 'get
 Route::get('/meteo/mes/{mes}/any/{any}',[App\Http\Controllers\MeteoController::class, 'getMesMeteo'])->name('home');
 Route::get('/meteo/any/{any}',[App\Http\Controllers\MeteoController::class, 'getAnyMeteo'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/contacte', [App\Http\Controllers\ContacteController::class, 'index'])->name('home');
 
 /**
  * Rutes Vista administra

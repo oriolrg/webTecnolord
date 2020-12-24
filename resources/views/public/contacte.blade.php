@@ -14,30 +14,34 @@
                     <div class="section_title pb-15">
                         <h5 class="sub_title">@lang('contacte.Contacte')</h5>
                         <h4 class="main_title">@lang('contacte.Posar-se en contacte')</h4>
-                        <p>@lang('contacte.Contacta amb TecnoLord amb el següent formulari i en breu ens posarem en contacte amb tu. Moltes gràcies.')</p>
+                        <p>@lang('contacte.Contacta amb TecnoLord amb el següent formulari i en breu ens posarem en contacte amb tu. Moltes gràcies.') oriolrg@gmail.com</p>
                     </div> <!-- section title -->
                     
                     <div class="contact_form">
-                        <form id="contact-form" action="assets/contact.php">
+                        <form id="contact-form" action="contacte">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="single_form">
-                                        <input name="name" type="text" placeholder="@lang('contacte.Nom')" disabled>
+                                        <label for="">Nom</label>
+                                        <input name="name" type="text" placeholder="@lang('contacte.Nom')" >
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single_form">
-                                        <input name="email" type="email" placeholder="@lang('contacte.Email')" disabled>
+                                        <label for="">Email</label>
+                                        <input name="email" type="email" placeholder="@lang('contacte.Email')" >
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-12">
                                     <div class="single_form">
-                                        <textarea name="message" placeholder="@lang('contacte.Missatge')" disabled></textarea>
+                                        <label for="">Missatge</label>
+                                        <textarea name="message" placeholder="@lang('contacte.Missatge')" ></textarea>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-12">
                                     <div class="single_form">
-                                        <input name="telefon" placeholder="@lang('contacte.Telèfon')" disabled></textarea>
+                                        <label for="">Telèfon</label>
+                                        <input name="telefon" type="phone"  placeholder="@lang('contacte.Telèfon')" ></textarea>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="form-group">

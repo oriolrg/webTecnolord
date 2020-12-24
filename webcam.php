@@ -1,4 +1,12 @@
 <?php 
+function curl($url) {
+    $ch = curl_init($url); // Inicia sesión cURL
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); // Configura cURL para devolver el resultado como cadena
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Configura cURL para que no verifique el peer del certificado dado que nuestra URL utiliza el protocolo HTTPS
+    $info = curl_exec($ch); // Establece una sesión cURL y asigna la información a la variable $info
+    curl_close($ch); // Cierra sesión cURL
+    return $info; // Devuelve la información de la función
+}
 function direccioVent($direccioVent){
     $windDir =  array (
         array ( 'minVal'=> 0, 'maxVal'=> 30, 'direction'=> 'N' ),
@@ -25,14 +33,26 @@ function direccioVent($direccioVent){
     }
 }
 function dadesMeteo($url, $im, $text, $posicio){
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $res = json_decode(curl_exec($ch));
-    curl_close($ch);
+    $sitioweb = curl($url);
     //encode passo a string
-    $temperatura = $res->observations[0]->metric->temp;
-    $humitat = $res->observations[0]->humidity;
+    $dom = new DOMDocument();
+    @$dom->loadHTML($sitioweb);
+    $divs = $dom->getElementsByTagName( 'div' );
+    //recorremos los divs
+    foreach( $divs as $div ){
+        //si encentramos la clase mc-title nos quedamos con el titulo
+        if( $div->getAttribute( 'class' ) === 'current-temp' ){
+            $temperatura = $div->nodeValue;
+            $temperatura = round((intval($temperatura) - 32) / 1.8 ,1);
+        }
+    }
+    $divs = $dom->getElementsByTagName( 'span' );
+    //recorremos los divs
+    foreach( $divs as $div ){
+        if( $div->getAttribute( 'class' ) === 'test-false wu-unit wu-unit-humidity ng-star-inserted' ){
+            $humitat = $div->nodeValue;
+        }
+    }
     //$pressio = $res->observations[0]->metric->pressure;
     //$precipitacio = $res->observations[0]->metric->precipTotal;
     //$direccioVent = $res->observations[0]->winddir;
@@ -48,7 +68,7 @@ function dadesMeteo($url, $im, $text, $posicio){
 
         imagettftext($stamp, 35, 0, 10, 120, $white, $font, 'Temperatura:'.$temperatura.chr(176).'C');
         //imagestring($stamp, 43, 20, 60, 'Temperatura:'.$temperatura.chr(176).'C', 0xFFFFFF);
-        imagettftext($stamp, 35, 0, 10, 190, $white, $font, 'Humitat:'.$humitat.'%');
+        imagettftext($stamp, 35, 0, 10, 190, $white, $font, 'Humitat:'.$humitat);
         //imagestring($stamp, 13, 20, 100, 'Humitat:'.$humitat.'%', 0xFFFFFF);
         //imagestring($stamp, 13, 20, 120, 'Vent:'.direccioVent($direccioVent), 0xFFFFFF);
         // Obting marges i mida requadre
@@ -96,14 +116,14 @@ if($cam == "querol"){
     $urlCam = "http://109.167.55.247:85/cgi-bin/CGIProxy.fcgi?cmd=snapPicture2&amp;usr=visitant&amp;pwd=visitant1";
     $data = file_get_contents_curl($urlCam);
     $im = imagecreatefromstring($data);
-    $url = 'https://api.weather.com/v2/pws/observations/current?stationId=ILACOM4&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal';
+    $url = 'https://www.wunderground.com/weather/es/la-coma/ILACOM4';
     $text = 'Port del Comte Golf';
     $stamp = dadesMeteo($url, $im, $text, 850);
 }elseif ($cam == "debutants") {
     $urlCam = "http://109.167.55.247:8999/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=user&password=useruser";
     $data = file_get_contents_curl($urlCam);
     $im = imagecreatefromstring($data);
-    $url = 'https://api.weather.com/v2/pws/observations/current?stationId=ICATALUN31&format=json&units=m&apiKey=979bf738d55144929bf738d551f49248&numericPrecision=decimal';
+    $url = 'https://www.wunderground.com/weather/es/la-coma/ICATALUN31';
     $text = 'Port del Comte 1730';
     $stamp = dadesMeteo($url, $im, $text, 0);
 
