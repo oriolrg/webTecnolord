@@ -29,7 +29,7 @@
                                 <div class="col-md-6">
                                     <div class="single_form">
                                         <label for="">Email</label>
-                                        <input name="email" type="email" placeholder="@lang('contacte.Email')" >
+                                        <input name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="@lang('contacte.Email')" >
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-12">

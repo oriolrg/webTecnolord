@@ -6,10 +6,7 @@
         @include('layouts.preloader');
         
         @include('administra.layouts.headernavbar');
-        <div class="d-flex" id="wrapper">
-
-            @include('administra.layouts.leftMenu')
-        
+        <div class="about_area pt-70 ">
             <!-- Page Content -->
             <div id="page-content-wrapper">
         

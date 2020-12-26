@@ -7,9 +7,7 @@
         @include('layouts.preloader');
         
         @include('administra.layouts.headernavbar');
-        <div class="d-flex" id="wrapper">
-
-            @include('administra.layouts.leftMenu')
+        <div class="about_area pt-70 ">
             <div id="app">
               <administra-bugs-component></administra-bugs-component>
             </div>

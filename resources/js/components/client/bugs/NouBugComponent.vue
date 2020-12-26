@@ -1,33 +1,25 @@
 <template>
     <div>
-        <table class="table no-wrap user-table mb-0">
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Titol Historia:</label>
                     <textarea type="text" class="form-control" name="name" id="name" v-model="fields.name" />
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
-            </td>
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Que passa:</label>
                     <textarea type="text" class="form-control" name="que" id="que" v-model="fields.que" />
                     <div v-if="errors && errors.que" class="text-danger">{{ errors.que[0] }}</div>
                 </div>
-            </td>
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Que hauria de passar:</label>
                     <textarea type="text" class="form-control" name="perque" id="perque" v-model="fields.perque" />
                     <div v-if="errors && errors.perque" class="text-danger">{{ errors.perque[0] }}</div>
                 </div>
-            </td>
-            <td><br>
+                <div class="form-group card-columns">
                 <button  v-if="fields.id" v-on:click="actualitza" class="btn btn-primary">Actualitza</button>
                 <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Cancela</button>
                 <button  v-else v-on:click="nou" class="btn btn-primary">Crear Bug</button>
-            </td>
-        </table>
+            </div>
     </div>
 </template>
 

@@ -15,8 +15,17 @@
 
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="page-scroll" href="/">Inici</a>
+                                <li class="nav-item">
+                                    <a href="{{url('/clients/projectes')}}" >Projectes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('/clients/histories')}}" >Histories d'usuari</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('/clients/bugs')}}" >Incidències</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll" href="/clients/">Instruccions</a>
                                 </li>
                                 @include('layouts.user')
                             </ul>

@@ -1,40 +1,30 @@
 <template>
     <div>
-        <table class="table no-wrap user-table mb-0">
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Titol Historia:</label>
                     <textarea type="text" class="form-control" name="name" id="name" v-model="fields.name" />
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
-            </td>
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Com a:</label>
                     <textarea type="text" class="form-control" name="como" id="como" v-model="fields.como" />
                     <div v-if="errors && errors.como" class="text-danger">{{ errors.como[0] }}</div>
                 </div>
-            </td>
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Que vull que faci:</label>
                     <textarea type="text" class="form-control" name="quiero" id="quiero" v-model="fields.quiero" />
                     <div v-if="errors && errors.quiero" class="text-danger">{{ errors.quiero[0] }}</div>
                 </div>
-            </td>
-            <td>
-                <div class="form-group">
+                <div class="form-group card-columns">
                     <label for="name">Perque vull que ho faci:</label>
                     <textarea type="text" class="form-control" name="para" id="para" v-model="fields.para" />
                     <div v-if="errors && errors.para" class="text-danger">{{ errors.para[0] }}</div>
                 </div>
-            </td>
-            <td><br>
+                <div class="form-group card-columns">
                 <button  v-if="fields.id" v-on:click="actualitza" class="btn btn-primary">Actualitza</button>
                 <button  v-if="fields.id" v-on:click="Cancela" class="btn btn-danger">Cancela</button>
                 <button  v-else v-on:click="nou" class="btn btn-primary">Crear Historia</button>
-            </td>
-        </table>
+                </div>
     </div>
 </template>
 

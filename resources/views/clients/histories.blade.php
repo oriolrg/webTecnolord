@@ -7,9 +7,7 @@
         @include('layouts.preloader');
         
         @include('clients.layouts.headernavbar');
-        <div class="d-flex" id="wrapper">
-
-            @include('clients.layouts.leftMenu')
+        <div class="about_area pt-70 ">
             <div id="app">
               <client-histories-component></administra-histories-component>
             </div>

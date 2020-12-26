@@ -4,12 +4,10 @@
     @include('layouts.head')
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <body>
-        @include('layouts.preloader');
+        @include('layouts.preloader')
         
-        @include('clients.layouts.headernavbar');
-        <div class="d-flex" id="wrapper">
-
-            @include('clients.layouts.leftMenu')
+        @include('clients.layouts.headernavbar')
+        <div class="about_area pt-70 ">
             <div id="app">
               <client-bugs-component></administra-bugs-component>
             </div>
@@ -29,7 +27,7 @@
     
         <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
 
-        @include('layouts.llibreries');
+        @include('layouts.llibreries')
     
     </body>
     

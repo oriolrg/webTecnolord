@@ -25,8 +25,8 @@ class ContacteController extends Controller
      */
     public function index(Request $request)
     {
+        return $request->session()->all();
         if($request->checkbox == 'on'){
-            
             Mail::to('oriolrg@gmail.com')->send(new MailFormulariContacte($request));
             return back()->with(array('msg' => 'Missatge enviat correctament'));
         }else{

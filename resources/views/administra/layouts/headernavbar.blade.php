@@ -15,7 +15,25 @@
 
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ml-auto">
-                                <li class="nav-item active">
+                                <li class="nav-item">
+                                    <a href="{{url('/administra/clients')}}" >Clients</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('/administra/projectes')}}" >Projectes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('/administra/histories_usuari')}}" >Histories d'usuari</a>
+                                </li>
+                                <li class="nav-item">
+                                    <!--<a href="{{url('/administra/sprints')}}" >Sprints</a>-->
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('/administra/bugs')}}" >Bugs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll" href="{{url('/administra/projectes_publicats')}}" >Projectes Publicats</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="page-scroll" href="/">Inici</a>
                                 </li>
                                 @include('layouts.user')
