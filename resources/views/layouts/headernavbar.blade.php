@@ -9,7 +9,7 @@
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+            <div class="navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                 <ul id="nav" class="languages ml-auto  navbar-nav inline  my-2 my-lg-0">
                     <li class="nav-item">
                         <a class="" href="#inici">@lang('headernavbar.Inici')</a>

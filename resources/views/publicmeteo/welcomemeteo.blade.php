@@ -10,7 +10,6 @@
        
        
       <div id="app">
-        @include('layouts.preloader');
         
         @include('publicmeteo.layouts.headernavbar');
     

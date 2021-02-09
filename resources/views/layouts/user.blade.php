@@ -8,8 +8,8 @@
                                         </li>
                                     @endif
                                 @else
-                                    <li class="nav-item dropdown active">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+                                    <li class="nav-item dropdown dropdown keep-inside-clicks-open">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"   aria-haspopup="true" aria-expanded="true" v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
 
@@ -33,3 +33,8 @@
                                         </div>
                                     </li>
                                 @endguest
+                                <script>
+                                    $('.navbar-nav a').click(function(){
+                                        $(".navbar-nav").collapse('hide');
+                                    });
+                                </script>

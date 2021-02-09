@@ -28,7 +28,7 @@ function direccioVent($direccioVent){
     );
     for ($i = 0; $i < count($windDir); $i++ ) {
         if ($direccioVent >= $windDir[$i]['minVal'] && $direccioVent <= $windDir[$i]['maxVal']) {
-          return $windDir[$i]['direction'];  
+            return $windDir[$i]['direction'];  
         }
     }
 }
@@ -87,10 +87,13 @@ function dadesMeteo($url, $im, $text, $posicio){
 $cam = $_GET['cam'];
 function file_get_contents_curl($url) { 
     $ch = curl_init(); 
-  
+    $timeout=14;
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, 0); 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-    curl_setopt($ch, CURLOPT_URL, $url); 
+    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+    curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+    
   
     $data = curl_exec($ch); 
     curl_close($ch); 
@@ -99,11 +102,6 @@ function file_get_contents_curl($url) {
 } 
 if($cam == "querol"){
     $urlCam = "http://109.167.55.247:8001/record/current.jpg";
-
-    $data = file_get_contents_curl($urlCam);
-    header('Content-type: image/jpeg');
-}elseif ($cam == "portdelcomte-debutants") {
-    $urlCam = "https://cams.projecte4estacions.com:8003/live/portdelcomte-debutants.flv";
 
     $data = file_get_contents_curl($urlCam);
     header('Content-type: image/jpeg');
@@ -116,9 +114,9 @@ if($cam == "querol"){
     $urlCam = "http://109.167.55.247:85/cgi-bin/CGIProxy.fcgi?cmd=snapPicture2&amp;usr=visitant&amp;pwd=visitant1";
     $data = file_get_contents_curl($urlCam);
     $im = imagecreatefromstring($data);
-    $url = 'https://www.wunderground.com/weather/es/la-coma/ILACOM4';
+    //$url = 'https://www.wunderground.com/weather/es/la-coma/ILACOM4';
     $text = 'Port del Comte Golf';
-    $stamp = dadesMeteo($url, $im, $text, 850);
+    //$stamp = dadesMeteo($url, $im, $text, 850);
 }elseif ($cam == "debutants") {
     $urlCam = "http://109.167.55.247:8999/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=user&password=useruser";
     $data = file_get_contents_curl($urlCam);
@@ -131,6 +129,11 @@ if($cam == "querol"){
     $urlCam = "http://109.167.55.247:86/snapshot.jpg?user=visitor&pwd=visitor";
 
     $data = file_get_contents_curl($urlCam);
+    if($data){
+        return "hola";
+    }else{
+        return "adeu";
+    }
     header('Content-type: image/jpeg');
 }elseif ($cam == "prova") {
     $urlCam = "http://109.167.55.247:8999/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=user&password=useruser";
