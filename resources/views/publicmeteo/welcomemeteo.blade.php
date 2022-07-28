@@ -11,9 +11,11 @@
        
       <div id="app">
         
-        @include('publicmeteo.layouts.headernavbar');
-    
-        @include('public.meteo.meteo')
+    <div id="insta">
+                    @include('public.meteo.meteo')
+                    </div>
+
+<!--====== SERVICES PART ENDS ======-->
 
         @include('public.webcams')
     

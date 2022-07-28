@@ -1,25 +1,25 @@
 <template>
     <div id="app">
         Temperatura - Punt Rosada - Precipitacions
-        <ejs-chart  id="tempprec" :primaryXAxis='primaryXAxisTRP' :primaryYAxis='primaryYAxisTRP' :axes='axesTRP' :rows='rowsTRP'>
+        <ejs-chart  id="tempprec" :primaryXAxis='primaryXAxisTRP' :primaryYAxis='primaryYAxisTRP' :axes='axesTRP' :rows='rowsTRP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVar' type='Line' xName='data' yName='temperatura' name='Temperatura'> </e-series>
-                <e-series :dataSource='tempVar' type='Line' xName='data' yName='precipTotal' yAxisName='yAxis' name='Precipitació'> </e-series>
-                <e-series :dataSource='tempVar' type='Line' height='20px' xName='data' yName='punt_rosada' name='Punt de Rosada'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='temperatura' name='Temperatura' :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='precipTotal' yAxisName='yAxis' name='Precipitació' :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' height='20px' xName='data' yName='punt_rosada' name='Punt de Rosada' :marker='tempVar'> </e-series>
             </e-series-collection>
         </ejs-chart>
         Precipitacions - Humitat - Pressió
-        <ejs-chart  id="container" :primaryXAxis='primaryXAxisPP' :primaryYAxis='primaryYAxisPP' :axes='axesPP' :rows='rowsPP'>
+        <ejs-chart  id="container" :primaryXAxis='primaryXAxisPP' :primaryYAxis='primaryYAxisPP' :axes='axesPP' :rows='rowsPP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVar' type='Line' xName='data' yName='precipTotal' name='Precipitació'> </e-series>
-                <e-series :dataSource='tempVar' type='Line' xName='data' yName='pressio' yAxisName='yAxis' name='Pressió'> </e-series>
-                <e-series :dataSource='tempVar' type='Line' xName='data' yName='humitat' name='Humitat'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='precipTotal' name='Precipitació' :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='pressio' yAxisName='yAxis' name='Pressió' :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='humitat' name='Humitat' :marker='tempVar'> </e-series>
             </e-series-collection>
         </ejs-chart>
         Precipitacions
-        <ejs-chart id="pluja" :primaryXAxis='primaryXAxisP' :primaryYAxis='primaryYAxisP'>
+        <ejs-chart id="pluja" :primaryXAxis='primaryXAxisPP' :primaryYAxis='primaryYAxisP' :axes='axesPP' :rows='rowsPP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVar' type='Polar' xName='data' yName='precipTotal' drawType='Area'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='precipTotal'> </e-series>
             </e-series-collection>
         </ejs-chart>
         Vent
@@ -35,16 +35,16 @@
             </e-series-collection>
         </ejs-chart>
         Velocitat del Vent
-        <ejs-chart id="velocitatVentAny" width='100%' height='350px' :primaryXAxis='primaryXAxis' :primaryYAxis='primaryYAxisVV'>
+        <ejs-chart id="velocitatVentAny" width='100%' height='350px' :primaryXAxis='primaryXAxis' :primaryYAxis='primaryYAxisVV' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVar' type='Line' xName='data' yName='velocitat_vent' name='Velocitat del Vent'> </e-series>
+                <e-series :dataSource='tempVar' type='Line' xName='data' yName='velocitat_vent' name='Velocitat del Vent' :marker='tempVar'> </e-series>
             </e-series-collection>
         </ejs-chart>
     </div>
 </template>
 
 <script>
-import { Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartPlugin, AreaSeries, LineSeries, DateTime, ScatterSeries} from "@syncfusion/ej2-vue-charts";
+import { Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartPlugin, AreaSeries, LineSeries, DateTime, ScatterSeries, Zoom, Crosshair} from "@syncfusion/ej2-vue-charts";
 
 
 Vue.use(ChartPlugin);
@@ -52,7 +52,7 @@ export default {
     components: {},
     props: ["tempVar"],
     provide: {
-        chart: [Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, AreaSeries, LineSeries, DateTime, ScatterSeries]
+        chart: [Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, AreaSeries, LineSeries, DateTime, ScatterSeries, Zoom, Crosshair]
     },
     data() {
         return {
@@ -86,7 +86,8 @@ export default {
                 labelFormat: '{value}'
             },
             primaryXAxisP: {
-                valueType: 'Category'
+                valueType: 'Category',
+                labelFormat: 'hh:mm'
             },
             primaryYAxisP: {
                 minimum: 0, maximum: this.Pmax, interval: 10,
@@ -153,6 +154,15 @@ export default {
                     height: '100%'
                 }
             ],
+            zoom:
+            {
+                enableMouseWheelZooming: true,
+                enablePinchZooming: true,
+                enableSelectionZooming: true
+            },
+            crosshair: {  enable: true, lineType: 'Vertical' },
+            tooltip: { enable: true, shared: true, format: '${series.name} : ${point.x} : ${point.y}' },
+            marker: { visible: true }
         };
     },
     methods: {

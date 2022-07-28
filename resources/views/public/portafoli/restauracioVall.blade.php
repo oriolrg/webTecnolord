@@ -9,7 +9,7 @@
                 <li></li>
             </ul>
             <h3 class="blog_title"><a href="">App dinamització restauració Vall de Lord</a></h3>
-            <p>2018</p>
+            <p></p>
         </div>
     </div> <!-- row -->
 </div>

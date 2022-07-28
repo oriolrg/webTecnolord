@@ -18,6 +18,9 @@
                         <ul>
                             <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow"  href="https://mercalord.cat">@lang('header.Mercalord')</a></li>
                         </ul>
+                        <ul>
+                            <li class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s"><a class="main-btn" rel="nofollow"  href="https://tecnolord.tk/escapeRoom">@lang('header.Escape Room')</a></li>
+                        </ul>
                     </div> <!-- header hero content -->
                 </div>
             </div> <!-- row -->

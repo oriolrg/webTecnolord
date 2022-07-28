@@ -129,11 +129,6 @@ if($cam == "querol"){
     $urlCam = "http://109.167.55.247:86/snapshot.jpg?user=visitor&pwd=visitor";
 
     $data = file_get_contents_curl($urlCam);
-    if($data){
-        return "hola";
-    }else{
-        return "adeu";
-    }
     header('Content-type: image/jpeg');
 }elseif ($cam == "prova") {
     $urlCam = "http://109.167.55.247:8999/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=user&password=useruser";

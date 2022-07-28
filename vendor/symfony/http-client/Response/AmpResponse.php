@@ -87,6 +87,7 @@ final class AmpResponse implements ResponseInterface, StreamableInterface
         $info['upload_content_length'] = -1.0;
         $info['download_content_length'] = -1.0;
         $info['user_data'] = $options['user_data'];
+        $info['max_duration'] = $options['max_duration'];
         $info['debug'] = '';
 
         $onProgress = $options['on_progress'] ?? static function () {};
@@ -125,6 +126,7 @@ final class AmpResponse implements ResponseInterface, StreamableInterface
             }
         };
 
+        $multi->lastTimeout = null;
         $multi->openHandles[$id] = $id;
         ++$multi->responseCount;
 
@@ -140,6 +142,16 @@ final class AmpResponse implements ResponseInterface, StreamableInterface
     public function getInfo(string $type = null)
     {
         return null !== $type ? $this->info[$type] ?? null : $this->info;
+    }
+
+    public function __sleep(): array
+    {
+        throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
+    }
+
+    public function __wakeup()
+    {
+        throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);
     }
 
     public function __destruct()
@@ -316,7 +328,7 @@ final class AmpResponse implements ResponseInterface, StreamableInterface
                 // Discard body of redirects
                 while (null !== yield $response->getBody()->read()) {
                 }
-            } catch (HttpException | StreamException $e) {
+            } catch (HttpException|StreamException $e) {
                 // Ignore streaming errors on previous responses
             }
 

@@ -33,8 +33,8 @@
                         <a class="" href="#contact">@lang('headernavbar.Contacte')</a>
                     </li>
                     <li class="nav-item"><a class="" href="{{ asset('idioma/ca') }}">CA</a></li>
-                    <li class="nav-item"><a class="" href="{{ asset('idioma/en') }}">EN</a></li>
-                    <li class="nav-item"><a class="" href="{{ asset('idioma/es') }}">ES</a></li>
+                    <!--<li class="nav-item"><a class="" href="{{ asset('idioma/en') }}">EN</a></li>
+                    <li class="nav-item"><a class="" href="{{ asset('idioma/es') }}">ES</a></li>-->
                 </ul>
                 <ul class="navbar-nav ml-auto inline my-2 my-lg-0">
                     @include('layouts.user')

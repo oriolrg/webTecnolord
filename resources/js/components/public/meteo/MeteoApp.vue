@@ -37,7 +37,7 @@
                 <div id="current-weather">
                   <p>{{ tempsActual.pressio }}</p>
                 </div>
-                <h1>Pluja acululada:</h1>
+                <h1>Pluja acumulada:</h1>
                 <div id="current-weather">
                   <p>{{ tempsActual.pluja.precipTotal }}</p>
                 </div>

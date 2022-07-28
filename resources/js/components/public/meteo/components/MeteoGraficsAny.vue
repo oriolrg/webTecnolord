@@ -1,51 +1,36 @@
 <template>
     <div id="app">
-        Temperatura - Punt Rosada - Precipitacions
-        <ejs-chart  id="tempprec" :primaryXAxis='primaryXAxisTRP' :primaryYAxis='primaryYAxisTRP' :axes='axesTRP' :rows='rowsTRP'>
+        Precipitacions Diaries
+        <ejs-chart  id="precipitacioTotal" :primaryXAxis='primaryXAxisP'  :axes='axesP' :rows='rowsTRP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='temperatura' name='Precipitació'> </e-series>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='precipTotal' yAxisName='yAxis' name='Pressió'> </e-series>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='punt_rosada' name='Humitat'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='precipTotal' name='Precipitació' :marker='tempVarAny'> </e-series>
             </e-series-collection>
         </ejs-chart>
-        Precipitacions - Humitat - Pressió
-        <ejs-chart  id="container" :primaryXAxis='primaryXAxisPP' :primaryYAxis='primaryYAxisPP' :axes='axesPP' :rows='rowsPP'>
+        Precipitacio Acomulada
+        <ejs-chart  id="precipitacioAcum" :primaryXAxis='primaryXAxisP'  :axes='axesP' :rows='rowsTRP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='precipTotal' name='Precipitació'> </e-series>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='pressio' yAxisName='yAxis' name='Pressió'> </e-series>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='humitat' name='Humitat'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='precipAcumulada' name='Precipitació Acomulada' :marker='tempVarAny'> </e-series>
             </e-series-collection>
         </ejs-chart>
-        Precipitacions
-        <ejs-chart id="pluja" :primaryXAxis='primaryXAxisP' :primaryYAxis='primaryYAxisP'>
+        Temperatura Max i mín
+        <ejs-chart  id="container" :primaryXAxis='primaryXAxisPP' :primaryYAxis='primaryYAxisPP' :axes='axesPP' :rows='rowsPP' :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVarAny' type='Polar' xName='data' yName='precipTotal' drawType='Area'> </e-series>
-            </e-series-collection>
-        </ejs-chart>
-        Direcció del Vent
-        <ejs-chart id="direccioVentAny" width='100%' height='350px' :primaryXAxis='primaryXAxis' :primaryYAxis='primaryYAxisDV'>
-            <e-series-collection>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='direccio_vent' name='Direcció del Vent'> </e-series>
-            </e-series-collection>
-        </ejs-chart>
-        Velocitat del Vent
-        <ejs-chart id="velocitatVentAny" width='100%' height='350px' :primaryXAxis='primaryXAxis' :primaryYAxis='primaryYAxisVV'>
-            <e-series-collection>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='velocitat_vent' name='Velocitat del Vent'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='TMin' name='Temperatura Min' :marker='tempVarAny'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='TMax' name='Temperatura Max' :marker='tempVarAny'> </e-series>
             </e-series-collection>
         </ejs-chart>
     </div>
 </template>
 
 <script>
-import { Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartPlugin, AreaSeries, LineSeries, DateTime} from "@syncfusion/ej2-vue-charts";
+import { Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartPlugin, AreaSeries, LineSeries, DateTime, Zoom, Crosshair} from "@syncfusion/ej2-vue-charts";
 
 
 Vue.use(ChartPlugin);
 export default {
     components: {},
     provide: {
-        chart: [Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, AreaSeries, LineSeries, DateTime]
+        chart: [Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, AreaSeries, LineSeries, DateTime, Zoom, Crosshair]
     },
     data() {
         return {
@@ -83,9 +68,8 @@ export default {
                 labelFormat: 'MMM'
             },
             primaryYAxisPP: {
-                minimum: 0, maximum: 100, interval: 10,
+                minimum: this.Tmin, maximum: this.Tmax, interval: 2,
                 lineStyle: { width: 2 },
-                title: 'Precipitació(l)/Humitat(%)',
                 labelFormat: '{value}',
                 //Span for chart axis
                 span: 2
@@ -120,13 +104,13 @@ export default {
                 //Span for chart axis
                 span: 2
             },
-            axesTRP:
+            axesP:
             [
                 {
                 majorGridLines: { width: 0 },
                 rowIndex: 0, opposedPosition: true,
                 lineStyle: { width: 0 },
-                minimum: 0, maximum: this.Pmax, interval: 5,
+                minimum: 0, maximum: 600, interval: 5,
                 name: 'yAxis', title: 'Precipitació',
                 labelFormat: '{value}'
                 }
@@ -138,12 +122,21 @@ export default {
                     height: '100%'
                 }
             ],
+            zoom:
+            {
+                enableMouseWheelZooming: true,
+                enablePinchZooming: true,
+                enableSelectionZooming: true
+            },
+            crosshair: {  enable: true, lineType: 'Vertical' },
+            tooltip: { enable: true, shared: true, format: '${series.name} : ${point.x} : ${point.y}' },
+            marker: { visible: true }
         };
     },
     methods: {
         findMaxT(topConfirmed) {
             let findTop = [];
-            topConfirmed.forEach(obj => findTop.push(obj.temperatura));
+            topConfirmed.forEach(obj => findTop.push(obj.Tmax));
             this.Tmax = Math.max(...findTop);
             findTop = [];
             topConfirmed.forEach(obj => findTop.push(obj.precipTotal));
@@ -157,7 +150,7 @@ export default {
         },
         findMinT(topConfirmed) {
             let findTop = [];
-            topConfirmed.forEach(obj => findTop.push(obj.temperatura));
+            topConfirmed.forEach(obj => findTop.push(obj.Tmin));
             this.Tmin = Math.min(...findTop);findTop = [];
             topConfirmed.forEach(obj => findTop.push(obj.temperpressioatura));
             this.PRmin = Math.min(...findTop);

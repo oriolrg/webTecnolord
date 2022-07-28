@@ -16,7 +16,7 @@ body {
    position: relative;
    display: flex;
    flex-direction: column;
-   background-image: linear-gradient(-180deg, #00eb00 0%, #00eb00 100%);
+   background-image: linear-gradient(-180deg, #000000 0%, #000000 100%);
 }
 #hi {
    position: relative;
@@ -68,6 +68,9 @@ body {
    top: 15px;
    position: absolute;
 }
+h1{
+   color: #ffffff !important;
+}
 
 #weather-desc {
    font-size: 2.0rem;
@@ -91,7 +94,22 @@ body {
    line-height: 24px;
    padding-bottom: 2em;
 }
+.sticky{
 
+  z-index: 99;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s; 
+}
+.container-meteo {
+   max-width: 100% !important;
+ }
 #max-detail>i,
 #min-detail>i {
    font-style: normal;

@@ -19,6 +19,7 @@ Route::get('/prova', [App\Http\Controllers\ExtractDataHtmlController::class, 'in
 Auth::routes(["register" => false]);
 
 Route::get('/meteo',[App\Http\Controllers\MeteoController::class, 'index'])->name('home');
+Route::get('/meteoInsta',[App\Http\Controllers\MeteoController::class, 'meteoInsta'])->name('home');
 Route::get('/meteo/save',[App\Http\Controllers\MeteoController::class, 'saveMeteo'])->name('home');
 Route::get('/meteo/dia/{dia}',[App\Http\Controllers\MeteoController::class, 'getMeteoDia'])->name('home');
 Route::get('/meteo/mes/{mes}/any/{any}',[App\Http\Controllers\MeteoController::class, 'getMesMeteo'])->name('home');
@@ -129,3 +130,9 @@ Route::group(['prefix'=>'client','as'=>'admin.'], function(){
  * Rutes consultes api publiques
  */
 Route::get('/categories', [App\Http\Controllers\CategoriesController::class, 'getCategories'])->name('home');
+/**
+ * Rutes escapeRoom
+ */
+Route::get('/escapeRoom', function () {
+    return view('publicescapeRoom.index', ['name' => 'James']);
+});

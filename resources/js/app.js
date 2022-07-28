@@ -63,6 +63,7 @@ Vue.component('client-nou-bug-component', require('./components/client/bugs/NouB
  * 
  * */
 Vue.component('meteo-app', require('./components/public/meteo/MeteoApp.vue').default);
+Vue.component('escape-component', require('./components/public/escapeRoom/EscapeRoom.vue').default);
 /**
  * 
  * Components Meteo

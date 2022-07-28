@@ -36,8 +36,6 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
     private $remaining;
     private $buffer;
     private $multi;
-    private $debugBuffer;
-    private $shouldBuffer;
     private $pauseExpiry = 0;
 
     /**
@@ -61,6 +59,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
         $this->buffer = fopen('php://temp', 'w+');
 
         $info['user_data'] = $options['user_data'];
+        $info['max_duration'] = $options['max_duration'];
         ++$multi->responseCount;
 
         $this->initializer = static function (self $response) {
@@ -149,7 +148,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
 
                 // Send request and follow redirects when needed
                 $this->handle = $h = fopen($url, 'r', false, $this->context);
-                self::addResponseHeaders($http_response_header, $this->info, $this->headers, $this->info['debug']);
+                self::addResponseHeaders(stream_get_meta_data($h)['wrapper_data'], $this->info, $this->headers, $this->info['debug']);
                 $url = $resolver($this->multi, $this->headers['location'][0] ?? null, $this->context);
 
                 if (null === $url) {
@@ -196,6 +195,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
         }
 
         $host = parse_url($this->info['redirect_url'] ?? $this->url, \PHP_URL_HOST);
+        $this->multi->lastTimeout = null;
         $this->multi->openHandles[$this->id] = [&$this->pauseExpiry, $h, $this->buffer, $this->onProgress, &$this->remaining, &$this->info, $host];
         $this->multi->hosts[$host] = 1 + ($this->multi->hosts[$host] ?? 0);
     }
@@ -366,7 +366,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
         }
 
         if (!$handles) {
-            usleep(1E6 * $timeout);
+            usleep((int) (1E6 * $timeout));
 
             return 0;
         }

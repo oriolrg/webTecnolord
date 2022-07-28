@@ -8,8 +8,8 @@
                 <li></li>
                 <li></li>
             </ul>
-            <h3 class="blog_title"><a href="">Instal·lació i interconnexió amb Internet d'estacións Metereològiques</a></h3>
-            <p>2020</p>
+            <h3 class="blog_title"><a href="https://tecnolord.cat/meteo">Instal·lació i interconnexió amb Internet d'estacións Metereològiques</a></h3>
+            <p></p>
         </div>
     </div> <!-- row -->
 </div>
