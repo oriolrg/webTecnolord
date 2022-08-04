@@ -25,6 +25,10 @@ class Meteo extends Model
       'radiacio_solar',
       'uv',
       'data',
+      'cardener',
+      'valls',
+      'llosa',
+      'capacitatllosa',
     ];
     public $timestamps = false;
 }

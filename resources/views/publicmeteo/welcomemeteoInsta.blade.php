@@ -20,7 +20,7 @@
             fill: black !important;
           }
           .dades{
-            font-size: 6rem;
+            font-size: 5rem;
             font-weight: bold;
           }
           .services_title{

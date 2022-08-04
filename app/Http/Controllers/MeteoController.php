@@ -79,6 +79,12 @@ class MeteoController extends Controller
                 }
             }
         }
+        $idValls = '251116-004';
+        $idCardener = '251116-005';
+        $idLlosa = '081419-003';
+        $cabalRius = Http::get('http://aca-web.gencat.cat/aetr/vishid/v2/data/public/rivergauges/river_flow_6min');
+        $capacitatLlosa = Http::get('http://aca-web.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity_6min');
+
         Meteo::create([
             'temperatura' => $value['metric']['temp'],
             'temperatura_sensacio' => $value['metric']['windChill'],
@@ -93,6 +99,10 @@ class MeteoController extends Controller
             'radiacio_solar' => $value['solarRadiation'],
             'uv' => $value['uv'],
             'data' => $value['obsTimeLocal'],
+            'cardener' => $cabalRius[$idCardener]['popup']['river_flow']['value'],
+            'valls' => $cabalRius[$idValls]['popup']['river_flow']['value'],
+            'llosa' => $cabalRius[$idLlosa]['popup']['river_flow']['value'],
+            'capacitatllosa' => $capacitatLlosa[$idLlosa]['popup']['capacity']['value'],
         ]);
         return view('publicmeteo.welcomemeteoInsta')
         ->with('value', $value)
@@ -108,7 +118,11 @@ class MeteoController extends Controller
         ->with('velVent', $value['metric']['windSpeed'])
         ->with('rafegaVent', $value['metric']['windGust'])
         ->with('dirVent', $value['winddir'])
-        ->with('pressio', $value['metric']['pressure']);
+        ->with('pressio', $value['metric']['pressure'])
+        ->with('cabalValls', $cabalRius[$idValls]['popup']['river_flow']['value'])
+        ->with('cabalCardener', $cabalRius[$idCardener]['popup']['river_flow']['value'])
+        ->with('cabalLlosa', $cabalRius[$idLlosa]['popup']['river_flow']['value'])
+        ->with('capacitatLlosa', $capacitatLlosa[$idLlosa]['popup']['capacity']['value']);
     }
     /**
      * Guarda les dades meteo
@@ -130,6 +144,14 @@ class MeteoController extends Controller
                 $value = null;
             }
         }
+        $idValls = '251116-004';
+        $idCardener = '251116-005';
+        $idLlosa = '081419-003';
+        $cabalRius = Http::get('http://aca-web.gencat.cat/aetr/vishid/v2/data/public/rivergauges/river_flow_6min');
+        $capacitatLlosa = Http::get('http://aca-web.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity_6min');
+        //$dataValls = $cabalValls->json('observations');
+        //return $cabalRius[$idValls]['popup']['river_flow']['value'];
+        
         Meteo::create([
             'temperatura' => $value['metric']['temp'],
             'temperatura_sensacio' => $value['metric']['windChill'],
@@ -144,6 +166,10 @@ class MeteoController extends Controller
             'radiacio_solar' => $value['solarRadiation'],
             'uv' => $value['uv'],
             'data' => $value['obsTimeLocal'],
+            'cardener' => $cabalRius[$idCardener]['popup']['river_flow']['value'],
+            'valls' => $cabalRius[$idValls]['popup']['river_flow']['value'],
+            'llosa' => $cabalRius[$idLlosa]['popup']['river_flow']['value'],
+            'capacitatllosa' => $capacitatLlosa[$idLlosa]['popup']['capacity']['value'],
         ]);
     }
     /**

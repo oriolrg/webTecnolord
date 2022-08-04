@@ -110,6 +110,9 @@ h1{
 .container-meteo {
    max-width: 100% !important;
  }
+ .services_icon{
+   color: #fff !important;
+ }
 #max-detail>i,
 #min-detail>i {
    font-style: normal;

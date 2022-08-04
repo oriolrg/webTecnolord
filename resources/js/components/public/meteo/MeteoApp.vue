@@ -3,7 +3,7 @@
     <div id="ancestor">
       <div class="container-fluid" id="app">
         <div class="row">
-          <div id="sidebar" class="col-md-3 col-sm-4 col-xs-12 sidebar">
+          <div id="sidebar" class="col-md-3 col-sm-4 col-xs-12 sidebar" style="background-image: linear-gradient(-180deg, #000000 0%, #000000 100%);">
             <div id="info">
               <div class="wrapper-left">
                 <h1>Temperatura:</h1>
@@ -17,33 +17,25 @@
                   <i>▼</i>
                   {{ tempsActual.avuiMaxMin.avuiTempMin }}°C
                 </div>
-                <h1>Humitat:</h1>
-                <div id="current-weather">
-                  <p>{{ tempsActual.humitat }}%</p>
-                </div>
-                <h1>Direcció Vent</h1>
-                <div id="current-weather">
-                      <p>{{ highlights.windStatus.derivedWindDirection }}</p>
-                </div>
-                <h1>Velocitat Vent</h1>
-                <div id="current-weather">
-                      <p>{{ highlights.windStatus.windSpeed }} km/h</p>
-                </div>
-                <h1>Ràfega Vent</h1>
-                <div id="current-weather">
-                      <p>{{ highlights.windStatus.windRafaga}} km/h</p>
-                </div>
-                <h1>Pressio:</h1>
-                <div id="current-weather">
-                  <p>{{ tempsActual.pressio }}</p>
-                </div>
                 <h1>Pluja acumulada:</h1>
                 <div id="current-weather">
                   <p>{{ tempsActual.pluja.precipTotal }}</p>
                 </div>
-                <h1>Intensitat pluja:</h1>
+                <h1>Cabal Cardener</h1>
                 <div id="current-weather">
-                  <p>{{ tempsActual.pluja.precipRate }}</p>
+                      <p>{{ tempVar[9].cardener }} m³/s</p>
+                </div>
+                <h1>Cabal Valls</h1>
+                <div id="current-weather">
+                      <p>{{ tempVar[9].valls }} m³/s</p>
+                </div>
+                <h1>Cabal Llosa</h1>
+                <div id="current-weather">
+                      <p>{{ tempVar[9].llosa }} m³/s</p>
+                </div>
+                <h1>Capacitat Llosa</h1>
+                <div id="current-weather">
+                  <p>{{ tempVar[9].capacitatllosa  }}%</p>
                 </div>
                 <h1>Punt de Rosada:</h1>
                 <div id="current-weather">
@@ -268,3 +260,5 @@ export default {
   }
 };
 </script>
+<style>
+ </style>

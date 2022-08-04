@@ -3,7 +3,17 @@
         Precipitacions Diaries
         <ejs-chart  id="precipitacioTotal" :primaryXAxis='primaryXAxisP'  :axes='axesP' :rows='rowsTRP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
             <e-series-collection>
-                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='precipTotal' name='Precipitació' :marker='tempVarAny'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='temperatura' name='Temperatura' width=3 :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Area' xName='data' yName='precipTotal' yAxisName='yAxis' name='Precipitació' width=3 :marker='tempVar' opacity=0.5> </e-series>
+            </e-series-collection>
+        </ejs-chart>
+        Cardener - Valls - Sortida Llosa - Capacitat Llosa
+        <ejs-chart  id="container" :primaryXAxis='primaryXAxisPP' :primaryYAxis='primaryYAxisPP' :axes='axesPP' :rows='rowsPP'  :zoomSettings='zoom' :legendSettings='legend' :crosshair='crosshair' :tooltip='tooltip'>
+            <e-series-collection>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='cardener' name='Cardener' width=3  :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='valls' name='Valls' width=3  :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Line' xName='data' yName='llosa' name='Cabal Llosa' width=3  :marker='tempVar'> </e-series>
+                <e-series :dataSource='tempVarAny' type='Area' xName='data' yName='capacitatllosa' yAxisName='yAxis' width=3  name='Capacitat Llosa' :marker='tempVar' opacity=0.5> </e-series>
             </e-series-collection>
         </ejs-chart>
         Precipitacio Acomulada
@@ -68,8 +78,9 @@ export default {
                 labelFormat: 'MMM'
             },
             primaryYAxisPP: {
-                minimum: this.Tmin, maximum: this.Tmax, interval: 2,
-                lineStyle: { width: 2 },
+                minimum: 0, maximum: 2, interval: 0.1,
+                lineStyle: { width: 1 },
+                title: 'Cabal (m³/s)',
                 labelFormat: '{value}',
                 //Span for chart axis
                 span: 2
@@ -79,9 +90,9 @@ export default {
                 {
                 majorGridLines: { width: 0 },
                 rowIndex: 0, opposedPosition: true,
-                lineStyle: { width: 0 },
-                minimum: this.PRmin, maximum: this.PRmax, interval: 1,
-                name: 'yAxis', title: 'Pressió',
+                lineStyle: { width: 1 },
+                minimum: 0, maximum: 100, interval: 5,
+                name: 'yAxis', title: 'Capacitat (%)',
                 labelFormat: '{value}'
                 }
             ],
@@ -110,7 +121,7 @@ export default {
                 majorGridLines: { width: 0 },
                 rowIndex: 0, opposedPosition: true,
                 lineStyle: { width: 0 },
-                minimum: 0, maximum: 600, interval: 5,
+                minimum: 0, maximum: 100, interval: 5,
                 name: 'yAxis', title: 'Precipitació',
                 labelFormat: '{value}'
                 }
