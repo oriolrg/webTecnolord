@@ -1,9 +1,9 @@
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class=" text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Visió per Computador')</h1>
-            <p>@lang('curriculum.definicio visio')</p>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Processament d\'imatges')</span>
+            <h1>@lang('Visió per Computador')</h1>
+            <p>@lang('definicio visio')</p>
+            <span  href="" class="main-multiple-no-btn">@lang('Processament d\'imatges')</span>
             <span  href="" class="main-multiple-no-btn">C++</span>
             <span  href="" class="main-multiple-no-btn">Python</span>
             <span  href="" class="main-multiple-no-btn">Algoritmia</span>
@@ -13,11 +13,11 @@
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class=" text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Bases de dades')</h1>
-            <p>@lang('curriculum.definicio bbdd')</p>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Administració')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Gestió')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Modelatge')</span>
+            <h1>@lang('Bases de dades')</h1>
+            <p>@lang('definicio bbdd')</p>
+            <span  href="" class="main-multiple-no-btn">@lang('Administració')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Gestió')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Modelatge')</span>
             <span  href="" class="main-multiple-no-btn">SQL</span>
             <span  href="" class="main-multiple-no-btn">MySQL</span>
             <span  href="" class="main-multiple-no-btn">PostgreSQL</span>
@@ -29,41 +29,41 @@
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class=" text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Enginyeria de Softuare')</h1>
-            <p>@lang('curriculum.definicio enginyeria')</p>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Metodologies Agils')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Prototipat')</span>
+            <h1>@lang('Enginyeria de Softuare')</h1>
+            <p>@lang('definicio enginyeria')</p>
+            <span  href="" class="main-multiple-no-btn">@lang('Metodologies Agils')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Prototipat')</span>
             <span  href="" class="main-multiple-no-btn">Kanban</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Planificació Àgil')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Planificació Àgil')</span>
             <span  href="" class="main-multiple-no-btn">Test Driven Development</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Gestió de comunicacions')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Gestió d\'equips')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Gestió de cost')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Gestió de comunicacions')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Gestió d\'equips')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Gestió de cost')</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class=" text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Usabilitat')</h1>
-            <p>@lang('curriculum.definicio usbilitat')</p>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Interacció humana amb les computadores')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Avaluació d\'Usabilitat')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Disseny Centrat en l\'Usuari')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Anàlisi d\'usuaris i tasques')</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Accesibilitat')</span>
+            <h1>@lang('Usabilitat')</h1>
+            <p>@lang('definicio usbilitat')</p>
+            <span  href="" class="main-multiple-no-btn">@lang('Interacció humana amb les computadores')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Avaluació d\'Usabilitat')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Disseny Centrat en l\'Usuari')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Anàlisi d\'usuaris i tasques')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Accesibilitat')</span>
         </div>
     </div>  <!-- single pricing -->
 </div>
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class=" text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Robotica')</h1>
-            <p>@lang('curriculum.definicio robotica')</p>
+            <h1>@lang('Robotica')</h1>
+            <p>@lang('definicio robotica')</p>
             <span  href="" class="main-multiple-no-btn">C</span>
             <span  href="" class="main-multiple-no-btn">C++</span>
             <span  href="" class="main-multiple-no-btn">Arduino</span>
-            <span  href="" class="main-multiple-no-btn">@lang('curriculum.Electronica')</span>
+            <span  href="" class="main-multiple-no-btn">@lang('Electronica')</span>
             <span  href="" class="main-multiple-no-btn">IoT</span>
 
         </div>
@@ -72,8 +72,8 @@
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class="text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Web i Apps mobil')</h1>
-            <p>@lang('curriculum.definicio web')</p>
+            <h1>@lang('Web i Apps mobil')</h1>
+            <p>@lang('definicio web')</p>
                 <span  href="" class="main-multiple-no-btn">HTML</span>
                 <span  href="" class="main-multiple-no-btn">PHP</span>
                 <span  href="" class="main-multiple-no-btn">JavaScript</span>
@@ -89,14 +89,14 @@
 <div class="col-lg-4 col-md-7 col-sm-9">
     <div class="text-center mt-30">
         <div class="">
-            <h1>@lang('curriculum.Administració de sistemes')</h1>
-            <p>@lang('curriculum.definicio administracio')</p>
+            <h1>@lang('Administració de sistemes')</h1>
+            <p>@lang('definicio administracio')</p>
                 <span  href="" class="main-multiple-no-btn">Bash</span>
-                <span  href="" class="main-multiple-no-btn">@lang('curriculum.Seguretat')</span>
-                <span  href="" class="main-multiple-no-btn">@lang('curriculum.Planifiació i administració de xarxes')</span>
-                <span  href="" class="main-multiple-no-btn">@lang('curriculum.Software concurrent')</span>
-                <span  href="" class="main-multiple-no-btn">@lang('curriculum.Software distribuit')</span>
-                <span  href="" class="main-multiple-no-btn">@lang('curriculum.Foaments de maquinari')</span>
+                <span  href="" class="main-multiple-no-btn">@lang('Seguretat')</span>
+                <span  href="" class="main-multiple-no-btn">@lang('Planifiació i administració de xarxes')</span>
+                <span  href="" class="main-multiple-no-btn">@lang('Software concurrent')</span>
+                <span  href="" class="main-multiple-no-btn">@lang('Software distribuit')</span>
+                <span  href="" class="main-multiple-no-btn">@lang('Foaments de maquinari')</span>
         </div>
     </div>  <!-- single pricing -->
 </div>

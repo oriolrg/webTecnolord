@@ -5,8 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section_title text-center pb-25">
-                    <h5 class="sub_title">@lang('serveis.Que podem fer.')</h5>
-                    <h4 class="main_title">@lang('serveis.Els nostres serveis.')</h4>
+                    <h5 class="sub_title">@lang('Que podem fer.')</h5>
+                    <h4 class="main_title">@lang('Els nostres serveis.')</h4>
                 </div> <!-- section title -->
             </div>
         </div> <!-- row -->
@@ -20,8 +20,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title">@lang('serveis.Disseny Web.')</h3>
-                        <p>@lang('serveis.Disseny Web definicio.')</p>
+                        <h3 class="services_title">@lang('Disseny Web.')</h3>
+                        <p>@lang('Disseny Web definicio.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
@@ -35,8 +35,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title">@lang('serveis.Desenvolupament')</h3>
-                        <p>@lang('serveis.Desenvolupament de serveis a mida, adaptats al 100% a les exigencies dels clients, cobrint totes les fases del cicle de vida del software requerit..')</p>
+                        <h3 class="services_title">@lang('Desenvolupament')</h3>
+                        <p>@lang('Desenvolupament de serveis a mida, adaptats al 100% a les exigencies dels clients, cobrint totes les fases del cicle de vida del software requerit..')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
@@ -50,8 +50,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title">@lang('serveis.Apps per a Mobil.')</h3>
-                        <p>@lang('serveis.Les aplicacions mobils obren nous horitzons. Guiem perque la idea d\'origen de la app es converteixi en un camp obert de possibilitats per a potenciar el teu negoci.')</p>
+                        <h3 class="services_title">@lang('Apps per a Mobil.')</h3>
+                        <p>@lang('Les aplicacions mobils obren nous horitzons. Guiem perque la idea d\'origen de la app es converteixi en un camp obert de possibilitats per a potenciar el teu negoci.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
@@ -65,8 +65,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title">@lang('serveis.Enginyeria de sistemes')</h3>
-                        <p>@lang('serveis.Connectar entorns web amb entorns d\'escriptori, botigues virtuals... Migració d\'entorns propietaris a sistemes basats en software lliure. Posem tecnologies al servei de l\'usuari')</p>
+                        <h3 class="services_title">@lang('Enginyeria de sistemes')</h3>
+                        <p>@lang('Connectar entorns web amb entorns d\'escriptori, botigues virtuals... Migració d\'entorns propietaris a sistemes basats en software lliure. Posem tecnologies al servei de l\'usuari')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
@@ -80,8 +80,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title">@lang('serveis.Aplicacions per a la gestió de la seguretat')</h3>
-                        <p>@lang('serveis.Sitema especific per a instal·lacions per a la gestió i emmagatzematge de captures de sistemes de seguretat.')</p>
+                        <h3 class="services_title">@lang('Aplicacions per a la gestió de la seguretat')</h3>
+                        <p>@lang('Sitema especific per a instal·lacions per a la gestió i emmagatzematge de captures de sistemes de seguretat.')</p>
                     </div>
                 </div> <!-- single services -->
             </div>
@@ -94,8 +94,8 @@
                         </svg>
                     </div>
                     <div class="services_content">
-                        <h3 class="services_title">@lang('serveis.Formació')</h3>
-                        <p>@lang('serveis.Amplia oferta formativa en l\'àrea de la informàtica. Programació, gestió Bases de Dades, Civerseguretat, Software lliure...')</p>
+                        <h3 class="services_title">@lang('Formació')</h3>
+                        <p>@lang('Amplia oferta formativa en l\'àrea de la informàtica. Programació, gestió Bases de Dades, Civerseguretat, Software lliure...')</p>
                     </div>
                 </div> <!-- single services -->
             </div>

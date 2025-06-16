@@ -2,7 +2,7 @@
     <meta charset="utf-8">
 
     <!--====== Title ======-->
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'TecnoLord') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +13,7 @@
     <meta name="description" content="TecnoLord, empresa de la Vall de Lord de serveis informàtics: servei tècnic, xarxes, programació i disseny web. Solucions Informàtiques i noves Tecnologies per a empreses, entitats i particulars.">
     <meta name="author" content="TecnoLord: Oriol Riu Gispert">
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}?" defer></script>
 
     <!--grafigs-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>

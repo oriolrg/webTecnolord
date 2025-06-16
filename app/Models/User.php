@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -17,12 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'admin',
-        'poblacio',
-        'telefon',
-        'email',
-        'password',
+        'strava_id', 'name', 'token', 'refresh_token', 'token_expires_at',
     ];
 
     /**
@@ -33,7 +29,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'email_verified_at',
     ];
 
     /**
@@ -44,8 +39,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function projecte()
+    public function cims()
     {
-        return $this->hasOne('App\Projecte');
+        return $this->belongsToMany(Cim::class)->withTimestamps()->withPivot('completed_at');
     }
 }

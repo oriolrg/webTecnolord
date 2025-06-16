@@ -9,7 +9,7 @@
                 <li></li>
             </ul>
             <h3 class="blog_title"><a href="">Automatització de porter automàtic d'habitatge des de telèfon mòbil</a></h3>
-            <p>2019</p>
+            <p></p>
         </div>
     </div> <!-- row -->
 </div>

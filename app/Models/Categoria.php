@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    use HasFactory;
+    protected $connection = 'mysql2';
+    protected $table = 'mdl_question_categories';
     protected $fillable = [
-        'name',
+ 
+       'id',
+ 
+       'name',
+ 
     ];
-    public $timestamps = false;
-    public function projectes() {
-        return $this->belongsToMany('App\Projecte');
-    }
 }

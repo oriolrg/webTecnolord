@@ -8,8 +8,8 @@
                 <li></li>
                 <li></li>
             </ul>
-            <h3 class="blog_title"><a href="">Renovació Web TecnoLord, nova gestió clients</a></h3>
-            <p>2020</p>
+            <h3 class="blog_title"><a href="https://tecnolord.com/">Renovació Web TecnoLord, nova gestió clients</a></h3>
+            <p></p>
         </div>
     </div> <!-- row -->
 </div>

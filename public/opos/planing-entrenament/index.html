@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendari d'Entrenament</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            padding: 10px;
+        }
+        .day {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .completed {
+            background-color: #d4edda;
+        }
+        #activity-details {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="month-year">Febrer 2025</div>
+        <div id="userName">Usuari: Jordi</div>
+    </div>
+
+    <div id="calendar"></div>
+
+    <div id="activity-details">
+        <h2>Detalls de l'activitat</h2>
+        <p id="activity-text">Selecciona un dia per veure l'activitat programada.</p>
+        <button id="mark-completed" class="button" style="display: none;">Marca com a completat</button>
+    </div>
+
+    <script>
+    async function fetchActivities() {
+        try {
+            const response = await fetch('data/calendari.json');
+            const data = await response.json();
+            return parseActivities(data);
+        } catch (error) {
+            console.error('Error carregant el calendari:', error);
+            return {};
+        }
+    }
+
+    function parseActivities(data) {
+        const activities = {};
+        data.calendari_entrenament.setmanes.forEach(setmana => {
+            Object.keys(setmana.dies).forEach((dia, index) => {
+                const date = new Date(2025, 1, index + 3).toISOString().split('T')[0]; // Generació simple de dates
+                activities[date] = setmana.dies[dia];
+            });
+        });
+        return activities;
+    }
+
+    async function createCalendar() {
+        const activities = await fetchActivities();
+        const calendar = document.getElementById('calendar');
+        const activityText = document.getElementById('activity-text');
+        const markCompletedButton = document.getElementById('mark-completed');
+        let selectedDate = null;
+
+        for (let day = 1; day <= 28; day++) {
+            const date = `2025-02-${String(day).padStart(2, '0')}`;
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('day');
+            dayElement.textContent = day;
+            if (localStorage.getItem(date)) {
+                dayElement.classList.add('completed');
+            }
+            dayElement.addEventListener('click', () => showActivity(date, dayElement, activities, activityText, markCompletedButton));
+
+            calendar.appendChild(dayElement);
+        }
+    }
+
+    function showActivity(date, dayElement, activities, activityText, markCompletedButton) {
+
+        selectedDate = date;
+        activityText.textContent = activities[date] || "No hi ha activitat programada per aquest dia.";
+        markCompletedButton.style.display = 'block';
+        markCompletedButton.onclick = () => markAsCompleted(date, dayElement);
+    }
+
+    function markAsCompleted(date, dayElement) {
+        localStorage.setItem(date, 'completed');
+        dayElement.classList.add('completed');
+        markCompletedButton.style.display = 'none';
+        activityText.textContent = "Activitat marcada com a completada!";
+
+        fetch('//tecnolord.cat/registre-activitat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                data: date,
+                activitat: activities[date] || "No hi ha activitat programada"
+            })
+        })
+        .then(response => response.text())
+        .then(data => console.log('Resposta del servidor:', data))
+        .catch(error => console.error('Error en l\'enviament:', error));
+    }
+
+    createCalendar();
+    </script>
+</body>
+</html>

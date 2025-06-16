@@ -1,0 +1,73 @@
+{
+    "calendari_entrenament": {
+        "setmanes": [
+            {
+                "nom": "Setmana 1 - Treball de nit (Dilluns 17/02/2025 - Dijous 20/02/2025, 20:00-8:00)",
+                "dies": {
+                    "2025-02-17": {
+                        "activitat": "Cursa suau",
+                        "detalls": {
+                            "distancia_km": 6,
+                            "hora": "17:30 - 18:30",
+                            "intensitat": "65-70% FC màxima"
+                        }
+                    },
+                    "2025-02-18": {
+                        "activitat": "Força funcional",
+                        "hora": "17:30 - 18:15",
+                        "exercicis": [
+                            {"nom": "Press banca", "series": 4, "repeticions": 8},
+                            {"nom": "Dominades", "series": 3, "repeticions": 6},
+                            {"nom": "Rem amb barra", "series": 4, "repeticions": 10}
+                        ]
+                    },
+                    "2025-02-19": {
+                        "activitat": "Natació",
+                        "hora": "17:30 - 18:15",
+                        "detalls": {
+                            "distancia_m": 1000,
+                            "serie_principal": "10x50 m ràpid (85% FC màxima)"
+                        }
+                    },
+                    "2025-02-20": {
+                        "activitat": "Ciclisme indoor",
+                        "hora": "17:30 - 18:30",
+                        "detalls": {
+                            "tipus": "Intervals curts",
+                            "intensitat": "80-90% FC màxima"
+                        }
+                    }
+                }
+            },
+            {
+                "nom": "Setmana 2 - 7 dies de festa (Volum i qualitat)",
+                "dies": {
+                    "2025-02-21": {"activitat": "Ciclisme", "detalls": {"duracio_h": 1.5, "intensitat": "65-75% FC màxima"}},
+                    "2025-02-22": {"activitat": "Força completa", "detalls": {"series": 3, "repeticions": "5-6", "pes": "moderad-alt"}},
+                    "2025-02-23": {"activitat": "Cursa progressiva", "detalls": {"distancia_km": "8-10", "fase_final": "1-2 km ritme ràpid"}},
+                    "2025-02-24": {"activitat": "Natació llarga", "detalls": {"distancia_m": 1800, "serie_principal": "4x400 m a ritme constant"}},
+                    "2025-02-25": {"activitat": "Senderisme o ciclisme"},
+                    "2025-02-26": {"activitat": "Senderisme o descans actiu"},
+                    "2025-02-27": {"activitat": "Ciclisme o activitat suau"}
+                }
+            },
+            {
+                "nom": "Setmana 3 - Treball de dia (Divendres 28/02/2025 - Diumenge 02/03/2025, 8:00-20:00)",
+                "dies": {
+                    "2025-02-28": {"activitat": "Natació curta", "detalls": {"distancia_m": 1000, "tecnica": "5x50 m treballant respiració"}},
+                    "2025-03-01": {"activitat": "Força funcional", "exercicis": ["kettlebell swings", "dominades", "squat"]},
+                    "2025-03-02": {"activitat": "Descans actiu o mobilitat"}
+                }
+            }
+        ],
+        "recomanacions_generals": {
+            "zonificacio_cardiaca": {
+                "zona_2": "Ritme aeròbic còmode (65-75% FC màxima).",
+                "zona_4": "Ritme intens on parlar és difícil (85% FC màxima)."
+            },
+            "alimentacio": "Mantén un dèficit calòric lleuger.",
+            "descans": "Prioritza el son, especialment durant torns de nit.",
+            "seguiment": "Pesa’t cada 2-3 setmanes per ajustar l’entrenament."
+        }
+    }
+}

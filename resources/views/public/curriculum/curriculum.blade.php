@@ -7,7 +7,7 @@
             <div class="col-lg-6">
                 <div class="section_title text-center pb-25">
                     <h5 class="sub_title">Oriol Riu Gispert</h5>
-                    <h4 class="main_title">@lang('curriculum.Enginyer Informatic')</h4>
+                    <h4 class="main_title">@lang('Enginyer Informatic')</h4>
                 </div> <!-- section title -->
             </div>
         </div> <!-- row -->
@@ -16,13 +16,13 @@
                 <div class="pricing_menu mt-30 pb-30">
                     <ul class="nav justify-content-center" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="active" id="monthly-tab" data-toggle="tab" href="#informatica" role="tab" aria-controls="monthly" aria-selected="true">@lang('curriculum.Informàtica')</a>
+                            <a class="active" id="monthly-tab" data-toggle="tab" href="#informatica" role="tab" aria-controls="monthly" aria-selected="true">@lang('Informàtica')</a>
                         </li>
                         <li class="nav-item">
-                            <a id="yearly-tab" data-toggle="tab" href="#habilitats" role="tab" aria-controls="yearly" aria-selected="false">@lang('curriculum.Habilitats')</a>
+                            <a id="yearly-tab" data-toggle="tab" href="#habilitats" role="tab" aria-controls="yearly" aria-selected="false">@lang('Habilitats')</a>
                         </li>
                         <li class="nav-item">
-                            <a id="yearly-tab" data-toggle="tab" href="#coneixements" role="tab" aria-controls="yearly" aria-selected="false">@lang('curriculum.Formacions')</a>
+                            <a id="yearly-tab" data-toggle="tab" href="#coneixements" role="tab" aria-controls="yearly" aria-selected="false">@lang('Formacions')</a>
                         </li>
                     </ul>
                 </div> <!-- pricing menu -->

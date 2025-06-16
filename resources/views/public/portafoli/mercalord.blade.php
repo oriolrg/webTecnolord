@@ -8,8 +8,8 @@
                 <li></li>
                 <li></li>
             </ul>
-            <h3 class="blog_title"><a href="">Web de dinamització i intercanvi a la Vall de Lord en temps de COVID</a></h3>
-            <p>2020</p>
+            <h3 class="blog_title"><a href="https://mercalord.cat/">Web de dinamització i intercanvi a la Vall de Lord en temps de COVID</a></h3>
+            <p></p>
         </div>
     </div> <!-- row -->
 </div>
