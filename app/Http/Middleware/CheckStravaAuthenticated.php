@@ -17,7 +17,7 @@ class CheckStravaAuthenticated
     public function handle(Request $request, Closure $next)
     {
         if (!session()->has('user_id')) {
-            return response()->json(['error' => 'Not authenticated'], 401);
+            return redirect('/strava/auth');
         }
         return $next($request);
     }

@@ -32,7 +32,9 @@ class StravaController extends Controller
     {
         try {
             $stravaUser = Socialite::driver('strava')->user();
-    
+            Log::info('Cridant StravaCallback');
+            Log::info('Sessió Strava guardada', ['usuari' => $stravaUser]);
+
             $user = User::updateOrCreate(
                 ['strava_id' => $stravaUser->getId()],
                 [
@@ -45,10 +47,10 @@ class StravaController extends Controller
     
             session(['user_id' => $user->id]);
     
-            return redirect('/enruta/privat');
+            return redirect('/api/enruta/privat');
     
         } catch (\Exception $e) {
-            return redirect('/enruta')->with('error', 'Error autenticant amb Strava');
+            return 'Error autenticant amb Strava';
         }
     }
 }
