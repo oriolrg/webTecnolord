@@ -49,3 +49,11 @@ Route::middleware('check.strava.auth')->group(function () {
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+use App\Http\Controllers\Api\EnrutaController;
+
+Route::get('/enruta/items', [EnrutaController::class, 'index']);
+Route::post('/enruta/items', [EnrutaController::class, 'store']);
+
+Route::get('/enruta/items/{routeItem}', [EnrutaController::class, 'show']);
+Route::get('/enruta/items/{routeItem}/track', [EnrutaController::class, 'track']);
+Route::get('/enruta/items/{routeItem}/download-gpx', [EnrutaController::class, 'downloadGpx']);

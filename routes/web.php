@@ -88,3 +88,9 @@ Route::middleware(['web'])->group(function () {
     });
 
 });
+
+
+use App\Http\Controllers\StravaController;
+
+Route::get('/enruta/auth/strava/redirect', [StravaController::class, 'redirectToStrava'])->name('strava.redirect');
+Route::get('/enruta/auth/strava/callback', [StravaController::class, 'handleStravaCallback'])->name('strava.callback');
