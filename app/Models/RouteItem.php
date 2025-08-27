@@ -17,6 +17,8 @@ class RouteItem extends Model
         'track_stats'   => 'array',
         'track_geojson' => 'array',
     ];
+    // app/Models/RouteItem.php
+    protected $hidden = ['edit_token_hash', 'owner_key_hash'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);

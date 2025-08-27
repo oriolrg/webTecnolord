@@ -57,3 +57,7 @@ Route::post('/enruta/items', [EnrutaController::class, 'store']);
 Route::get('/enruta/items/{routeItem}', [EnrutaController::class, 'show']);
 Route::get('/enruta/items/{routeItem}/track', [EnrutaController::class, 'track']);
 Route::get('/enruta/items/{routeItem}/download-gpx', [EnrutaController::class, 'downloadGpx']);
+
+// ➕ AFEGEIX:
+Route::delete('/enruta/items/{routeItem}', [EnrutaController::class, 'destroy']);
+Route::match(['put','patch'], '/enruta/items/{routeItem}', [EnrutaController::class, 'update']);
