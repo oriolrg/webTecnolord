@@ -2,7 +2,8 @@
     <div class="header_navbar">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="/">
-                <img class="logo" data-wow-duration="2s" data-wow-delay="0.4s" src="assets/images/tecnolord.png" alt="Contacte">
+                <img class="logo" style="height: 160%; width: auto; object-fit: contain; margin: 0;top:0" src="assets/images/meteolord.png" alt="Contacte">
+
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="toggler-icon"></span>
@@ -30,10 +31,7 @@
                         <a class="" href="/#curriculum">@lang('Curriculum')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="" href="/enruta">@lang('Enruta')</a>
-                    </li>                      
-                    <li class="nav-item">
-                        <a class="" href="/enruta">@lang('Joc')</a>
+                        <a class="" href="/#contact">@lang('Contacte')</a>
                     </li>                    
                 </ul>
             </div>

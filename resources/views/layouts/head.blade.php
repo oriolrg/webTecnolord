@@ -2,7 +2,7 @@
     <meta charset="utf-8">
 
     <!--====== Title ======-->
-    <title>{{ config('app.name', 'TecnoLord') }}</title>
+    <title>MeteoLord</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,6 +18,12 @@
     <!--grafigs-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    
+    <link rel="manifest" href="/assets/meteo/manifest.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/meteo/icons/icon-192.png">
+    <link rel="icon" href="/assets/meteo/icons/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/meteo/icons/icon-512.png" />
+
 
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/png">
@@ -48,3 +54,9 @@
    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
 </head>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/assets/meteo/sw.js', { scope: '/meteo/' })
+    .catch(console.error);
+}
+</script>

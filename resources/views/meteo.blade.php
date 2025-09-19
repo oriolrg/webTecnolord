@@ -11,34 +11,7 @@
         <meteo-app></meteo-app>
     
         @include('layouts.footer');
-        <h2>Predicció de Pluja</h2>
-<button onclick="ferPrediccio()">Fer Predicció</button>
-<p id="prediccio">Esperant predicció...</p>
-<script>
-    async function ferPrediccio() {
-        // Dades d'exemple (en un futur es poden agafar en temps real)
-        const dades = {
-            temperatura: 8.2,   // Graus Celsius
-            humitat: 3,       // Percentatge
-            pressio: 1004,     // hPa
-            vent: 0            // km/h
-        };
-
-        // Fem una petició a Laravel perquè obtingui la predicció
-        const resposta = await fetch('/api/predir-pluja', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dades)
-        });
-
-        // Convertim la resposta a JSON
-        const resultat = await resposta.json();
-
-        // Actualitzem la interfície amb la probabilitat de pluja
-        document.getElementById('prediccio').innerText =
-            `Probabilitat de pluja: ${resultat.probabilitat_pluja}%`;
-    }
-</script>
+    
         <!--====== FOOTER PART ENDS ======-->
         
         <!--====== BACK TOP TOP PART START ======-->
