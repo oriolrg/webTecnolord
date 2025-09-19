@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use App\Models\Preguntes;
 use App\Models\Pregunta;
 use App\Models\Resposta;
 use App\Models\Categoria;
@@ -148,6 +149,25 @@ class testsOposController extends Controller
             $resposta->update();
         }
         return back();
+    }
+    public function guardarPreguntaFallada(Request $request){
+    	    // Buscar si la pregunta ja existeix a la base de dades
+    $pregunta = Preguntes::where('pregunta', $request->pregunta)->first();
+
+    if ($pregunta) {
+        // Si la pregunta ja existeix, incrementar el camp num_fallos
+        $pregunta->increment('num_fallos');
+    } else {
+        // Si la pregunta no existeix, crear un nou registre
+        $pregunta = new Preguntes();
+        $pregunta->pregunta = $request->pregunta;
+        $pregunta->resposta_correcta = $request->resposta_correcta;
+        $pregunta->tema = $request->tema;
+        $pregunta->num_fallos = 1; // Inicialitzar num_fallos a 1
+        $pregunta->save();
+    }
+
+    return response()->json(['success' => true]);
     }
     public function eliminarPregunta($id){
         Pregunta::find($id)->delete();

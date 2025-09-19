@@ -1,36 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Humitat;
+
 use App\Models\Meteo;
-use App\Models\Pluja;
-use App\Models\Pressio;
-use App\Models\Temperatura;
-use App\Models\Uvi;
-use App\Models\Vent;
 use Carbon\Carbon;
-use Illuminate\Http\Client\Request;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Http\Request; // ✔ correcte (abans tenies Illuminate\Http\Client\Request)
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class MeteoController extends Controller
 {
     /**
-     * Obte l'historic de dades meteo
-     *
-     * @return void
+     * Obté l'històric de dades meteo
      */
-    public function getMeteo(){
-        //$page = $_REQUEST['page'];
-        $hora = Carbon::now()->format('H')+3;
-        //if($page <= 1){
-            $result = Meteo::orderBy('created_at', 'desc')->paginate($hora);
-        //}else{
-        //    $result = Meteo::orderBy('created_at', 'desc')->paginate(24); 
-        //}
-        
-        //$result = Meteo::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get();
-        //$result = Meteo::orderBy('created_at', 'desc')->paginate(24);
+    public function getMeteo()
+    {
+        $hora = (int) Carbon::now()->format('H') + 3;
+        $result = Meteo::orderBy('created_at', 'desc')->paginate($hora);
+
         $meteo = [];
         foreach ($result as $key => $value) {
             $meteo[$key]['dia'] = $value->created_at;
@@ -73,125 +61,155 @@ class MeteoController extends Controller
             $meteo[$key]['data']['llosa']= $value->llosa;
             $meteo[$key]['data']['capacitatllosa'] = $value->capacitatllosa;
         }
-        return $meteo;
+
+        // Et retorno JSON amb headers correctes
+        return response()->json($meteo);
     }
-    public function getPreviMeteo(){
-        $result = Meteo::get();
-        return $result;
+
+    public function getPreviMeteo()
+    {
+        return response()->json(Meteo::get());
     }
-    public function getMeteoMaxMin(){
-        $res =  Meteo::where('created_at', '>=', Carbon::today())->get();
-        $resultat['temperatura'] = $this->getMaxTemperature($res);
-        $resultat['humitat'] = $this->getMaxHumitat($res);
-        $resultat['vent'] = $this->getMaxVent($res);
-        $resultat['rafega'] = $this->getMaxRafega($res);
-        return $resultat;
-    }
+
     /**
-     * Obte el vent maxim i minim
-     *
-     * @param [type] $res
-     * @return $resultat['temperatura]
+     * Endpoint “max/min” robust (no peta si no hi ha dades)
      */
-    public function getMaxVent($res){
-        $resultat["max"]["wind_speed"] = $res->max("wind_speed");
-        $resultat["max"]["hora"] = $res->where('wind_speed', '==', $res->max("wind_speed"))->first()->created_at;
-        return $resultat;
+    public function getMeteoMaxMin()
+    {
+        $res = Meteo::where('created_at', '>=', Carbon::today())->get();
+
+        if (!$res instanceof Collection || $res->isEmpty()) {
+            Log::info('Meteo.getMeteoMaxMin: no data today');
+            return response()->json([
+                'temperatura' => $this->emptyMaxMin(),
+                'humitat'     => $this->emptyMaxMin(),
+                'vent'        => $this->emptyMaxMin(),
+                'rafega'      => $this->emptyMaxMin(),
+            ]);
+        }
+
+        return response()->json([
+            'temperatura' => $this->getMaxTemperature($res),
+            'humitat'     => $this->getMaxHumitat($res),
+            'vent'        => $this->getMaxVent($res),
+            'rafega'      => $this->getMaxRafega($res),
+        ]);
     }
+
+    /** Helpers comuns */
+    private function emptyMaxMin(): array
+    {
+        return [
+            'max' => ['value' => null, 'hora' => null],
+            'min' => ['value' => null, 'hora' => null],
+        ];
+    }
+
+    private function toIso($ts): ?string
+    {
+        if (!$ts) return null;
+        return method_exists($ts, 'toIso8601String') ? $ts->toIso8601String() : (string) $ts;
+    }
+
+    private function maxMin(Collection $res, string $field): array
+    {
+        // descarta files sense valor
+        $filtered = $res->filter(fn($r) => isset($r->$field) && $r->$field !== null);
+
+        if ($filtered->isEmpty()) return $this->emptyMaxMin();
+
+        // evita comparar floats per igualtat; ordena i agafa el 1r
+        $maxRow = $filtered->sortByDesc($field)->first();
+        $minRow = $filtered->sortBy($field)->first();
+
+        return [
+            'max' => [
+                'value' => (float) $maxRow->$field,
+                'hora'  => $this->toIso($maxRow->created_at),
+            ],
+            'min' => [
+                'value' => (float) $minRow->$field,
+                'hora'  => $this->toIso($minRow->created_at),
+            ],
+        ];
+    }
+
+    /** Max/min de cada magnitud — deleguen al helper comú */
+    public function getMaxVent(Collection $res)    { return $this->maxMin($res, 'wind_speed'); }
+    public function getMaxRafega(Collection $res)  { return $this->maxMin($res, 'wind_gust'); }
+    public function getMaxTemperature(Collection $res){ return $this->maxMin($res, 'temperature'); }
+    public function getMaxHumitat(Collection $res) { return $this->maxMin($res, 'humidity'); }
+
     /**
-     * Obte la rafega maxima i minima
-     *
-     * @param [type] $res
-     * @return $resultat['temperatura]
+     * Guarda una lectura “manual”
      */
-    public function getMaxRafega($res){
-        $resultat["max"]["wind_gust"] = $res->max("wind_gust");
-        $resultat["max"]["hora"] = $res->where('wind_gust', '==', $res->max("wind_gust"))->first()->created_at;
-        return $resultat;
+    public function saveDatabaseMeteo()
+    {
+        $current = Http::get('https://api.ecowitt.net/api/v3/device/real_time?application_key=411E5E067FA93EBE6CBB7077849A0D88&api_key=48f227ba-17e7-4b10-8e18-cc5456608048&mac=8C:AA:B5:C6:74:5F&call_back=all&temp_unitid=1&wind_speed_unitid=8&rainfall_unitid=12&pressure_unitid=3&wind_speed_unitid=7&rainfall_unitid=12');
+        $value = json_decode($current);
+        $value->data->cabals = $this->getCabals();
+        $this->saveMeteo($value);
+        return response()->json(['ok' => true]);
     }
+
+    public function saveCronDatabaseMeteo()
+    {
+        $current = Http::get('https://api.ecowitt.net/api/v3/device/real_time?application_key=411E5E067FA93EBE6CBB7077849A0D88&api_key=48f227ba-17e7-4b10-8e18-cc5456608048&mac=8C:AA:B5:C6:74:5F&call_back=all&temp_unitid=1&wind_speed_unitid=8&rainfall_unitid=12&pressure_unitid=3&wind_speed_unitid=7&rainfall_unitid=12');
+        $value = json_decode($current);
+        $value->data->cabals = $this->getCabals();
+        $this->saveMeteo($value);
+        return response()->json(['ok' => true]);
+    }
+
     /**
-     * Obte la temperatura maxima i minima
-     *
-     * @param [type] $res
-     * @return $resultat['temperatura]
+     * Carrega els cabals amb guàrdies per evitar 500 si l’API canvia
      */
-    public function getMaxTemperature($res){
-        $resultat["max"]["temperatura"] = $res->max("temperature");
-        $resultat["max"]["hora"] = $res->where('temperature', '==', $res->max("temperature"))->first()->created_at;
-        $resultat["min"]["temperatura"] = $res->min("temperature");
-        $resultat["min"]["hora"] = $res->where('temperature', '==', $res->min("temperature"))->first()->created_at;
-        return $resultat;
+    public function getCabals(): array
+    {
+        $idValls = '251116-004';
+        $idCardener = '251116-005';
+        $idLlosa = '081419-003';
+
+        $cabalRius = Http::withOptions(['verify' => false])->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/rivergauges/river_flow_6min')->json();
+        $capacitatLlosa = Http::withOptions(['verify' => false])->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity_6min')->json();
+
+        $get = fn($arr, $path) => data_get($arr, $path);
+        return [
+            'cardener'      => $get($cabalRius, "{$idCardener}.popup.river_flow.value"),
+            'valls'         => $get($cabalRius, "{$idValls}.popup.river_flow.value"),
+            'llosa'         => $get($cabalRius, "{$idLlosa}.popup.river_flow.value"),
+            'capacitatllosa'=> $get($capacitatLlosa, "{$idLlosa}.popup.capacity.value"),
+        ];
     }
+
     /**
-     * Obte la humitat maxima i minima
-     *
-     * @param [type] $res
-     * @return $resultat['temperatura]
+     * Desa una lectura a BBDD
      */
-    public function getMaxHumitat($res){
-        $resultat["max"]["humitat"] = $res->max("humidity");
-        $resultat["max"]["hora"] = $res->where('humidity', '==', $res->max("humidity"))->first()->created_at;
-        $resultat["min"]["humitat"] = $res->min("humidity");
-        $resultat["min"]["hora"] = $res->where('humidity', '==', $res->min("humidity"))->first()->created_at;
-        return $resultat;
+    public function saveMeteo($value)
+    {
+        $meteo= new Meteo();
+        $meteo->humidity       = $value->data->outdoor->humidity->value ?? null;
+        $meteo->dew_point      = $value->data->outdoor->dew_point->value ?? null;
+        $meteo->feels_like     = $value->data->outdoor->feels_like->value ?? null;
+        $meteo->rain_rate      = $value->data->rainfall->rain_rate->value ?? null;
+        $meteo->daily          = $value->data->rainfall->daily->value ?? null;
+        $meteo->event          = $value->data->rainfall->event->value ?? null;
+        $meteo->hourly         = $value->data->rainfall->hourly->value ?? null;
+        $meteo->weekly         = $value->data->rainfall->weekly->value ?? null;
+        $meteo->monthly        = $value->data->rainfall->monthly->value ?? null;
+        $meteo->absolute       = $value->data->pressure->absolute->value ?? null;
+        $meteo->relative       = $value->data->pressure->relative->value ?? null;
+        $meteo->temperature    = $value->data->outdoor->temperature->value ?? null;
+        $meteo->uvi            = $value->data->solar_and_uvi->uvi->value ?? null;
+        $meteo->solar          = $value->data->solar_and_uvi->solar->value ?? null;
+        $meteo->wind_speed     = $value->data->wind->wind_speed->value ?? null;
+        $meteo->wind_gust      = $value->data->wind->wind_gust->value ?? null;
+        $meteo->wind_direction = $value->data->wind->wind_direction->value ?? null;
+        $meteo->cardener       = $value->data->cabals["cardener"] ?? null;
+        $meteo->valls          = $value->data->cabals["valls"] ?? null;
+        $meteo->llosa          = $value->data->cabals["llosa"] ?? null;
+        $meteo->capacitatllosa = $value->data->cabals["capacitatllosa"] ?? null;
+        $meteo->save();
     }
-    public function saveDatabaseMeteo(){
-    $resp = Http::get('https://api.ecowitt.net/api/v3/device/real_time?application_key=411E5E067FA93EBE6CBB7077849A0D88&api_key=48f227ba-17e7-4b10-8e18-cc5456608048&mac=8C:AA:B5:C6:74:5F&call_back=all&temp_unitid=1&wind_speed_unitid=8&rainfall_unitid=12&pressure_unitid=3&wind_speed_unitid=7&rainfall_unitid=12');
-    $payload = $resp->json();                 // <<— ARRAY
-    $payload['data']['cabals'] = $this->getCabals();
-    $this->saveMeteo($payload);               // <<— passen ARRAY
 }
 
-public function saveMeteo(array $p){
-    $g = fn($path, $def=null) => data_get($p, $path, $def);
-
-    $meteo = new Meteo();
-    $meteo->humidity       = $g('data.outdoor.humidity.value', null);
-    $meteo->dew_point      = $g('data.outdoor.dew_point.value', null);
-    $meteo->feels_like     = $g('data.outdoor.feels_like.value', null);
-
-    $meteo->rain_rate      = $g('data.rainfall.rain_rate.value', 0);
-    $meteo->daily          = $g('data.rainfall.daily.value', 0);
-    $meteo->event          = $g('data.rainfall.event.value', 0);
-    $meteo->hourly         = $g('data.rainfall.hourly.value', 0);   // <<— ara segur
-    $meteo->weekly         = $g('data.rainfall.weekly.value', 0);
-    $meteo->monthly        = $g('data.rainfall.monthly.value', 0);
-
-    $meteo->absolute       = $g('data.pressure.absolute.value', null);
-    $meteo->relative       = $g('data.pressure.relative.value', null);
-    $meteo->temperature    = $g('data.outdoor.temperature.value', null);
-    $meteo->uvi            = $g('data.solar_and_uvi.uvi.value', null);
-    $meteo->solar          = $g('data.solar_and_uvi.solar.value', null);
-    $meteo->wind_speed     = $g('data.wind.wind_speed.value', null);
-    $meteo->wind_gust      = $g('data.wind.wind_gust.value', null);
-    $meteo->wind_direction = $g('data.wind.wind_direction.value', null);
-
-    $meteo->cardener       = $g('data.cabals.cardener', null);
-    $meteo->valls          = $g('data.cabals.valls', null);
-    $meteo->llosa          = $g('data.cabals.llosa', null);
-    $meteo->capacitatllosa = $g('data.cabals.capacitatllosa', null);
-
-    $meteo->save();
-}
-    /**
-     * Carrega els cabals function
-     *
-     * @return cabals array
-     */
-    public function getCabals(){
-    $idValls = '251116-004';
-    $idCardener = '251116-005';
-    $idLlosa = '081419-003';
-
-    $cabalRius = Http::withoutVerifying()->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/rivergauges/river_flow_6min')->json();
-    $capacitatLlosa = Http::withoutVerifying()->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity_6min')->json();
-
-    return [
-        'cardener'      => data_get($cabalRius, "$idCardener.popup.river_flow.value", null),
-        'valls'         => data_get($cabalRius, "$idValls.popup.river_flow.value", null),
-        'llosa'         => data_get($cabalRius, "$idLlosa.popup.river_flow.value", null),
-        'capacitatllosa'=> data_get($capacitatLlosa, "$idLlosa.popup.capacity.value", null),
-    ];
-}
-    
-}

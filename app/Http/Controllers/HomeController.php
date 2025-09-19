@@ -50,7 +50,7 @@ class HomeController extends Controller
         );
         $contador->n_visites = $contador->n_visites+1;
         $contador->save();
-        $meteo->saveDatabaseMeteo();
+        //$meteo->saveDatabaseMeteo();
         return view('meteo');
     }
     
