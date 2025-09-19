@@ -135,63 +135,63 @@ class MeteoController extends Controller
         $resultat["min"]["hora"] = $res->where('humidity', '==', $res->min("humidity"))->first()->created_at;
         return $resultat;
     }
-    /**
-     * Emmagatzema les dades metereologiques a la BBDD
-     *
-     * @return void
-     */
     public function saveDatabaseMeteo(){
-        $current = Http::get('https://api.ecowitt.net/api/v3/device/real_time?application_key=411E5E067FA93EBE6CBB7077849A0D88&api_key=48f227ba-17e7-4b10-8e18-cc5456608048&mac=8C:AA:B5:C6:74:5F&call_back=all&temp_unitid=1&wind_speed_unitid=8&rainfall_unitid=12&pressure_unitid=3&wind_speed_unitid=7&rainfall_unitid=12');
-        $value = json_decode($current);
-        $value->data->cabals = $this->getCabals();
-        $this->saveMeteo($value);
-    }
+    $resp = Http::get('https://api.ecowitt.net/api/v3/device/real_time?application_key=411E5E067FA93EBE6CBB7077849A0D88&api_key=48f227ba-17e7-4b10-8e18-cc5456608048&mac=8C:AA:B5:C6:74:5F&call_back=all&temp_unitid=1&wind_speed_unitid=8&rainfall_unitid=12&pressure_unitid=3&wind_speed_unitid=7&rainfall_unitid=12');
+    $payload = $resp->json();                 // <<— ARRAY
+    $payload['data']['cabals'] = $this->getCabals();
+    $this->saveMeteo($payload);               // <<— passen ARRAY
+}
+
+public function saveMeteo(array $p){
+    $g = fn($path, $def=null) => data_get($p, $path, $def);
+
+    $meteo = new Meteo();
+    $meteo->humidity       = $g('data.outdoor.humidity.value', null);
+    $meteo->dew_point      = $g('data.outdoor.dew_point.value', null);
+    $meteo->feels_like     = $g('data.outdoor.feels_like.value', null);
+
+    $meteo->rain_rate      = $g('data.rainfall.rain_rate.value', 0);
+    $meteo->daily          = $g('data.rainfall.daily.value', 0);
+    $meteo->event          = $g('data.rainfall.event.value', 0);
+    $meteo->hourly         = $g('data.rainfall.hourly.value', 0);   // <<— ara segur
+    $meteo->weekly         = $g('data.rainfall.weekly.value', 0);
+    $meteo->monthly        = $g('data.rainfall.monthly.value', 0);
+
+    $meteo->absolute       = $g('data.pressure.absolute.value', null);
+    $meteo->relative       = $g('data.pressure.relative.value', null);
+    $meteo->temperature    = $g('data.outdoor.temperature.value', null);
+    $meteo->uvi            = $g('data.solar_and_uvi.uvi.value', null);
+    $meteo->solar          = $g('data.solar_and_uvi.solar.value', null);
+    $meteo->wind_speed     = $g('data.wind.wind_speed.value', null);
+    $meteo->wind_gust      = $g('data.wind.wind_gust.value', null);
+    $meteo->wind_direction = $g('data.wind.wind_direction.value', null);
+
+    $meteo->cardener       = $g('data.cabals.cardener', null);
+    $meteo->valls          = $g('data.cabals.valls', null);
+    $meteo->llosa          = $g('data.cabals.llosa', null);
+    $meteo->capacitatllosa = $g('data.cabals.capacitatllosa', null);
+
+    $meteo->save();
+}
     /**
      * Carrega els cabals function
      *
      * @return cabals array
      */
     public function getCabals(){
-        $idValls = '251116-004';
-        $idCardener = '251116-005';
-        $idLlosa = '081419-003';
-        $cabalRius = Http::withOptions(['verify' => false,])->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/rivergauges/river_flow_6min');
-        $capacitatLlosa = Http::withOptions(['verify' => false,])->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity_6min');
-        $valor['cardener']= $cabalRius[$idCardener]['popup']['river_flow']['value'];
-        $valor['valls']= $cabalRius[$idValls]['popup']['river_flow']['value'];
-        $valor['llosa']= $cabalRius[$idLlosa]['popup']['river_flow']['value'];
-        $valor['capacitatllosa']= $capacitatLlosa[$idLlosa]['popup']['capacity']['value'];
-        return $valor;
-    }
-    /**
-     * Emmagatzema les dades meteo
-     *
-     * @param [type] $value
-     * @return void
-     */
-    public function saveMeteo($value){
-        $meteo= new Meteo();
-        $meteo->humidity = $value->data->outdoor->humidity->value;
-        $meteo->dew_point = $value->data->outdoor->dew_point->value;
-        $meteo->feels_like = $value->data->outdoor->feels_like->value;
-        $meteo->rain_rate= $value->data->rainfall->rain_rate->value;
-        $meteo->daily = $value->data->rainfall->daily->value;
-        $meteo->event =	$value->data->rainfall->event->value;
-        $meteo->hourly = $value->data->rainfall->hourly->value;	
-        $meteo->weekly = $value->data->rainfall->weekly->value;
-        $meteo->monthly = $value->data->rainfall->monthly->value;
-        $meteo->absolute = $value->data->pressure->absolute->value;
-        $meteo->relative = $value->data->pressure->relative->value;
-        $meteo->temperature = $value->data->outdoor->temperature->value;
-        $meteo->uvi = $value->data->solar_and_uvi->uvi->value;
-        $meteo->solar = $value->data->solar_and_uvi->solar->value;
-        $meteo->wind_speed = $value->data->wind->wind_speed->value;	
-        $meteo->wind_gust = $value->data->wind->wind_gust->value;
-        $meteo->wind_direction = $value->data->wind->wind_direction->value;
-        $meteo->cardener = $value->data->cabals["cardener"];
-        $meteo->valls = $value->data->cabals["valls"];	
-        $meteo->llosa = $value->data->cabals["llosa"];
-        $meteo->capacitatllosa = $value->data->cabals["capacitatllosa"];
-        $meteo->save();
-    }
+    $idValls = '251116-004';
+    $idCardener = '251116-005';
+    $idLlosa = '081419-003';
+
+    $cabalRius = Http::withoutVerifying()->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/rivergauges/river_flow_6min')->json();
+    $capacitatLlosa = Http::withoutVerifying()->get('http://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity_6min')->json();
+
+    return [
+        'cardener'      => data_get($cabalRius, "$idCardener.popup.river_flow.value", null),
+        'valls'         => data_get($cabalRius, "$idValls.popup.river_flow.value", null),
+        'llosa'         => data_get($cabalRius, "$idLlosa.popup.river_flow.value", null),
+        'capacitatllosa'=> data_get($capacitatLlosa, "$idLlosa.popup.capacity.value", null),
+    ];
+}
+    
 }
